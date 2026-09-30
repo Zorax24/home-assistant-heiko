@@ -4,11 +4,11 @@
 
 A **custom integration**, not a Supervisor app/add-on. It receives W600 TCP data in Home Assistant, exposes measurements and the complete reference settings catalog, and can optionally relay the connection to MyHeatPump. No separate server process or cloud account login is required.
 
-**Status: 0.5.1, experimental, private distribution.** The repository stays private. Download links work only for authorized GitHub users. Hardware communication and writes with this release have **not** been confirmed on a physical heat pump. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
+**Status: 0.5.1, experimental.** Hardware communication and writes with this release have **not** been confirmed on a physical heat pump. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
 
 ## Quick start
 
-1. Sign in to GitHub with an account authorized for this repository. Open [Releases](https://github.com/Zorax24/home-assistant-heiko/releases), download `heiko_w600-ha-0.5.1.zip` and `SHA256SUMS`. Use the installation ZIP, not GitHub's source ZIP.
+1. Open [Releases](https://github.com/Zorax24/home-assistant-heiko/releases), download `heiko_w600-ha-0.5.1.zip` and `SHA256SUMS`. Use the installation ZIP, not GitHub's source ZIP.
 2. Create a Home Assistant backup and keep a copy of any existing `heiko_w600` folder and W600 destination settings.
 3. Extract the installation ZIP. Copy its `custom_components/heiko_w600` folder into your Home Assistant configuration directory. The resulting file must be `/config/custom_components/heiko_w600/manifest.json`. Some editors show the configuration directory as `/homeassistant`. Do not add a second nested `custom_components` directory.
 4. Restart Home Assistant yourself. Open **Settings → Devices & services → Add integration → HEIKO W600**.
@@ -74,8 +74,8 @@ To roll back, restore the previous component folder (and dashboard if required),
 
 For support, provide HA version, integration version, non-identifying model/controller/firmware details if known, and **Download diagnostics** from the integration menu. Diagnostics omit configured hosts, ports, account/device IDs, raw frames and actual temperatures/settings; they include software version, freshness ages/counts and connection/cloud flags. Review every attachment before sharing. Do not post credentials, raw traffic, screenshots with private details, or full serial/MAC addresses. See [technical details and verification](docs/verification.md).
 
-## Private access, HACS and license
+## Installation methods, HACS and license
 
-Manual ZIP installation by authorized users is the supported distribution route here. **HACS cannot install private repositories**, according to its [official FAQ](https://hacs.dev/docs/faq/private_repositories/). The repository layout and metadata prepare a future public review, but HACS listing/installation and Home Assistant Brands acceptance are not claimed or completed. Public release and new collaborators require a separate decision.
+**Manual ZIP installation is the supported installation method.** Use the installation package attached to a release and follow the quick start above. The repository includes `hacs.json` and follows the [HACS integration layout requirements](https://www.hacs.dev/docs/publish/integration/). **Installation through HACS has not been validated.** Inclusion in the HACS default list and Home Assistant Brands has not been completed. Repository metadata and a successful Hassfest check alone do not establish HACS installation support.
 
 MIT licensed. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md) for the ioBroker reference provenance. This project is independent of the manufacturer and makes no device certification claim. Developers: [reproducible build and tests](docs/development.md).

@@ -30,4 +30,4 @@ The initial sanitized export is separate from the original personal project; no 
 
 Catalog and protocol code provenance is in THIRD_PARTY_NOTICES.md. Preserve the catalog indices, bounds and numeric options when translating labels. Entity unique IDs are keyed by entry ID and catalog/protocol index, never translated. Internal select states are `option_<code>`; legacy German service-call labels remain accepted aliases. State-based user automations require the change documented in CHANGELOG.md.
 
-The included `hacs.json` and manifest are preparation metadata. The private distribution is not installable by HACS and is not submitted to its default list or Home Assistant Brands.
+The included `hacs.json` and manifest are preparation metadata. HACS installation has not been validated; default-list inclusion and Home Assistant Brands submission are not completed. Keep the manual release-ZIP instructions until these gates have been verified.

@@ -18,10 +18,10 @@ Service/protection groups are labeled and warned in exported dashboards. Catalog
 
 Downloads of HA diagnostics expose only allowlisted metadata: software version, connection/freshness/cloud flags, ages and field counts, and supported configuration ranges. They omit configured addresses/ports, timestamps, actual parameter/measurement values, raw frames, identities and secrets. State attributes in HA can still contain operational information; review screenshots, logs and all support attachments manually.
 
-The sanitized repository was built with a file allowlist and a new Git history. Personal deployment notes, network diagrams, logs, screenshots, backups and old archives are not included. Local Gitleaks scanning is complemented by a custom private-data/path/address scan and manual source/document/archive review. A scanner is not a proof that no possible sensitive string exists; report any issue privately to an authorized maintainer.
+The sanitized repository was built with a file allowlist and a new Git history. Personal deployment notes, network diagrams, logs, screenshots, backups and old archives are not included. Local Gitleaks scanning is complemented by a custom private-data/path/address scan and manual source/document/archive review. A scanner is not a proof that no possible sensitive string exists; report any issue confidentially to the maintainer; do not include sensitive details in public issues.
 
 ## HACS boundary and official sources
 
 Single-integration structure and manifest metadata follow [HA manifest](https://developers.home-assistant.io/docs/creating_integration_manifest/) and [HACS integration requirements](https://www.hacs.dev/docs/publish/integration/). Localization follows [HA custom integration localization](https://developers.home-assistant.io/docs/internationalization/custom_integration/) and [backend localization](https://developers.home-assistant.io/docs/internationalization/core/).
 
-[HACS private repository FAQ](https://hacs.dev/docs/faq/private_repositories/) explicitly excludes private repositories. HACS install, default-list inclusion and Home Assistant Brands submission are not completed. A future public release needs a new review of these gates. Manual authorized ZIP installation is the present path.
+HACS installation has not been validated. Default-list inclusion and Home Assistant Brands submission are not completed. Review the current official requirements and complete an installation test before documenting HACS as supported. Manual release-ZIP installation is the supported path.

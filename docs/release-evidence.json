@@ -39,7 +39,7 @@
   },
   "physical_hardware_test": false,
   "production_changes": false,
-  "hacs_install": "not supported for private repositories",
+  "hacs_install": "not validated; default-list inclusion and Brands submission not completed",
   "brands_submission": false,
   "install_archive": {
     "files": 25,

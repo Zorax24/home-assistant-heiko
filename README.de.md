@@ -4,11 +4,11 @@
 
 Eine **Custom Integration**, kein Supervisor-Add-on beziehungsweise App. Sie empfängt W600-TCP-Daten direkt in Home Assistant, stellt Messwerte und den vollständigen Referenz-Parameterkatalog bereit und kann die Verbindung optional an MyHeatPump weiterleiten. Dafür sind kein eigener Serverdienst und keine Anmeldung mit einem Cloud-Konto nötig.
 
-**Stand: 0.5.1, experimentell, private Weitergabe.** Das Repository bleibt privat. Downloads funktionieren nur mit einem berechtigten GitHub-Konto. Kommunikation und Schreibvorgänge dieser Version sind **noch nicht an einer echten Wärmepumpe bestätigt**. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
+**Stand: 0.5.1, experimentell.** Kommunikation und Schreibvorgänge dieser Version sind **noch nicht an einer echten Wärmepumpe bestätigt**. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
 
 ## Schnellstart
 
-1. Mit einem berechtigten GitHub-Konto anmelden. Unter [Releases](https://github.com/Zorax24/home-assistant-heiko/releases) `heiko_w600-ha-0.5.1.zip` und `SHA256SUMS` herunterladen. Das Installations-ZIP verwenden, nicht das automatisch erzeugte Quellcode-ZIP von GitHub.
+1. Unter [Releases](https://github.com/Zorax24/home-assistant-heiko/releases) `heiko_w600-ha-0.5.1.zip` und `SHA256SUMS` herunterladen. Das Installations-ZIP verwenden, nicht das automatisch erzeugte Quellcode-ZIP von GitHub.
 2. Ein Home-Assistant-Backup erstellen. Einen vorhandenen Ordner `heiko_w600` und die bisherigen W600-Zieleinstellungen separat sichern.
 3. Das Installations-ZIP entpacken. Den enthaltenen Ordner `custom_components/heiko_w600` in das Home-Assistant-Konfigurationsverzeichnis kopieren. Danach muss `/config/custom_components/heiko_w600/manifest.json` vorhanden sein. Manche Editoren nennen das Konfigurationsverzeichnis `/homeassistant`. Keinen zweiten verschachtelten Ordner `custom_components` erzeugen.
 4. Home Assistant selbst neu starten. **Einstellungen → Geräte & Dienste → Integration hinzufügen → HEIKO W600** öffnen.
@@ -74,8 +74,8 @@ Zur Rückkehr den alten Integrationsordner und bei Bedarf das Dashboard wiederhe
 
 Für Support HA-Version, Integrationsversion und bekannte nicht identifizierende Modell-/Regler-/Firmwareangaben nennen. Im Integrationsmenü **Diagnosedaten herunterladen** verwenden. Diagnose lässt konfigurierte Adressen und Ports, Konto-/Gerätekennungen, Rohrahmen sowie tatsächliche Temperaturen und Parameterwerte weg. Enthalten sind Softwareversion, Datenalter, Feldzahlen und Verbindungs-/Cloud-Flags. Jeden Anhang vor Weitergabe prüfen. Keine Zugangsdaten, Rohmitschnitte, privaten Screenshots oder vollständigen Serien-/MAC-Nummern posten. Siehe [technische Prüfungen](docs/verification.de.md).
 
-## Privater Zugriff, HACS und Lizenz
+## Installationswege, HACS und Lizenz
 
-Der unterstützte Weg ist manuelle ZIP-Installation durch berechtigte Personen. **HACS unterstützt keine privaten Repositories**, siehe [offizielle FAQ](https://hacs.dev/docs/faq/private_repositories/). Struktur und Metadaten bereiten eine spätere öffentliche Prüfung vor. HACS-Aufnahme/-Installation und Aufnahme in Home Assistant Brands sind weder behauptet noch abgeschlossen. Öffentliche Freigabe und neue Zugriffsberechtigungen sind separate Entscheidungen.
+**Die manuelle ZIP-Installation ist der unterstützte Installationsweg.** Das Installationspaket eines Releases verwenden und dem Schnellstart oben folgen. Das Repository enthält `hacs.json` und folgt den [HACS-Strukturanforderungen für Integrationen](https://www.hacs.dev/docs/publish/integration/). **Eine Installation über HACS wurde noch nicht geprüft.** Die Aufnahme in die HACS-Standardliste und Home Assistant Brands ist nicht abgeschlossen. Metadaten und ein erfolgreicher Hassfest-Test allein belegen keine HACS-Installationsunterstützung.
 
 MIT-Lizenz; [LICENSE](LICENSE) und [Herkunftshinweise](THIRD_PARTY_NOTICES.md) nennen die ioBroker-Referenz. Das Projekt ist unabhängig vom Hersteller und behauptet keine Gerätezertifizierung. Für Entwicklung: [reproduzierbarer Build und Tests](docs/development.md).

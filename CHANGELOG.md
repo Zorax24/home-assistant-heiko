@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Make English/German documentation and installation instructions suitable for a general audience. Remove distribution-specific access wording while retaining experimental status, hardware limitations and the unverified HACS boundary. No runtime or installation-package changes.
+
+- Deutsch/Englisch für allgemeine Nutzung formuliert; experimenteller Stand, Hardware-Grenzen und ungeprüfte HACS-Installation bleiben ausdrücklich genannt. Laufzeitcode und Installationspaket unverändert.
+
 ## 0.5.1
 
 - Fix legacy German select-option service aliases at the HA service-handler boundary, before core option validation. Both legacy labels and stable `option_<code>` calls now reach the same protocol value.
@@ -10,7 +16,7 @@ Alte deutsche Auswahltexte werden jetzt vor der HA-Auswahlprüfung normalisiert.
 
 ## 0.5.0
 
-- Prepare a standalone private distribution from the complete 0.4.0 custom integration; retain the full catalog, protocols, CRC checks, readback confirmation, requests and independent optional manufacturer relay.
+- Prepare a standalone distribution from the complete 0.4.0 custom integration; retain the full catalog, protocols, CRC checks, readback confirmation, requests and independent optional manufacturer relay.
 - Add complete English/German HA translations for catalog controls, choices, connection states, write-result states, buttons, setup/options, exceptions and export action.
 - Generate English/German dashboards from the local registry; retain stable IDs and custom names. Highlight service/protection groups and include a warning. Never save a dashboard automatically.
 - Add deliberate manufacturer-forwarding choice to setup/options. Preserve old saved choice and enabled default for legacy installations.
