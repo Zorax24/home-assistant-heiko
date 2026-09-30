@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Separate installation and connection setup. Add a prepared HACS custom-repository shortcut and four-step instructions, explicitly conditional on public availability and installation validation; shorten the working ZIP method to three steps in both languages.
+
 - Make English/German documentation and installation instructions suitable for a general audience. Remove distribution-specific access wording while retaining experimental status, hardware limitations and the unverified HACS boundary. No runtime or installation-package changes.
 
 - Deutsch/Englisch für allgemeine Nutzung formuliert; experimenteller Stand, Hardware-Grenzen und ungeprüfte HACS-Installation bleiben ausdrücklich genannt. Laufzeitcode und Installationspaket unverändert.

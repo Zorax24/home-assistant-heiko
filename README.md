@@ -6,17 +6,42 @@ A **custom integration**, not a Supervisor app/add-on. It receives W600 TCP data
 
 **Status: 0.5.1, experimental.** Hardware communication and writes with this release have **not** been confirmed on a physical heat pump. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
 
-## Quick start
+## Installation
 
-1. Open [Releases](https://github.com/Zorax24/home-assistant-heiko/releases), download `heiko_w600-ha-0.5.1.zip` and `SHA256SUMS`. Use the installation ZIP, not GitHub's source ZIP.
-2. Create a Home Assistant backup and keep a copy of any existing `heiko_w600` folder and W600 destination settings.
-3. Extract the installation ZIP. Copy its `custom_components/heiko_w600` folder into your Home Assistant configuration directory. The resulting file must be `/config/custom_components/heiko_w600/manifest.json`. Some editors show the configuration directory as `/homeassistant`. Do not add a second nested `custom_components` directory.
-4. Restart Home Assistant yourself. Open **Settings → Devices & services → Add integration → HEIKO W600**.
-5. Set a local listener address and free TCP port. The defaults are `0.0.0.0:8899`, meaning all local interfaces. Select **Forward to manufacturer cloud** deliberately; it defaults to enabled for existing behavior. Manufacturer reference defaults are `www.myheatpump.com:18899`. These defaults are not proof that your module uses that endpoint.
-6. Configure the W600's existing TCP client connection to the **reachable LAN address of Home Assistant** and the selected listener port. The W600 initiates the connection. `0.0.0.0` is a bind address, never a W600 destination. See [network and W600 details](docs/network.md) before changing anything.
-7. Wait for fresh measurements and settings. Controls remain unavailable without fresh validated settings. Follow the dashboard steps below.
+### Add the repository in HACS — prepared for public availability
 
-You need file access to the HA configuration directory, permission to restart HA, a W600 using the reference TCP protocol, and a routed LAN/VPN path from W600 to the listener. A browser connection to HA port 8123 does not test the W600 listener. **Do not expose the listener or W600 management interface to the internet.**
+This route is prepared for a publicly accessible repository; it is **not yet an installation-tested release path**. HACS must already be installed. HACS cannot use private repositories, even when you can access them on GitHub ([official FAQ](https://hacs.dev/docs/faq/private_repositories/)). Until that requirement and the remaining HACS checks are met, use the three-step ZIP method below.
+
+[Open repository in HACS](https://my.home-assistant.io/redirect/hacs_repository/?owner=Zorax24&repository=home-assistant-heiko&category=integration)
+
+Or add it manually:
+
+1. Open **HACS → ⋮ → Custom repositories**.
+2. Paste `https://github.com/Zorax24/home-assistant-heiko`, choose **Integration**, and click **Add**.
+3. Open **HEIKO W600**, download it, then restart Home Assistant.
+4. Open **Settings → Devices & services → Add integration → HEIKO W600**.
+
+No Supervisor add-on repository is needed. A HACS listing is not required for the custom-repository route, but repository availability and an actual HACS installation test still need checking.
+
+### Install now without HACS — three steps
+
+Make a Home Assistant backup first. If updating, keep the previous component folder.
+
+1. [Download the installation ZIP](https://github.com/Zorax24/home-assistant-heiko/releases/download/v0.5.1/heiko_w600-ha-0.5.1.zip) and extract it.
+2. Copy its `custom_components/heiko_w600` folder into `/config/custom_components/` on your Home Assistant host.
+3. Restart Home Assistant, then click [Add HEIKO W600](https://my.home-assistant.io/redirect/config_flow_start/?domain=heiko_w600) or use **Settings → Devices & services → Add integration**.
+
+The final path is `/config/custom_components/heiko_w600/manifest.json`. Some editors call `/config` `/homeassistant`. Use the installation ZIP, not GitHub's source ZIP. A checksum is available under [Releases](https://github.com/Zorax24/home-assistant-heiko/releases).
+
+## Connect the heat pump
+
+1. In the integration setup, keep the listener defaults `0.0.0.0` and TCP port `8899` if that port is free. Choose deliberately whether to forward to MyHeatPump.
+2. Set the W600's existing TCP client destination to your Home Assistant host's **reachable LAN/VPN address** and port `8899` (or your chosen port). Save the previous W600 destination before changing it.
+3. Wait for fresh measurements and settings, then [create your dashboard](#create-your-dashboard).
+
+The W600 opens the connection. `0.0.0.0` is never its destination; HA's web port `8123` is a different service. **Do not expose the listener to the internet.** The manufacturer reference endpoint is `www.myheatpump.com:18899`, configurable in setup. Check [network and W600 details](docs/network.md) if your module's settings differ, you use Docker/VPN, or no data arrives.
+
+Requirements: Home Assistant 2026.9.4 or newer (tested with 2026.9.4), a W600 using the reference TCP protocol, and a working LAN/VPN route. The ZIP method also requires access to the HA configuration directory. Controls remain unavailable until fresh validated settings arrive.
 
 ## Features and daily use
 
@@ -76,6 +101,6 @@ For support, provide HA version, integration version, non-identifying model/cont
 
 ## Installation methods, HACS and license
 
-**Manual ZIP installation is the supported installation method.** Use the installation package attached to a release and follow the quick start above. The repository includes `hacs.json` and follows the [HACS integration layout requirements](https://www.hacs.dev/docs/publish/integration/). **Installation through HACS has not been validated.** Inclusion in the HACS default list and Home Assistant Brands has not been completed. Repository metadata and a successful Hassfest check alone do not establish HACS installation support.
+**Manual ZIP installation is the supported installation method.** Use the installation package attached to a release and follow the three steps above. The repository includes `hacs.json` and follows the [HACS integration layout requirements](https://www.hacs.dev/docs/publish/integration/). **Installation through HACS has not been validated.** Inclusion in the HACS default list and Home Assistant Brands has not been completed. Repository metadata and a successful Hassfest check alone do not establish HACS installation support.
 
 MIT licensed. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md) for the ioBroker reference provenance. This project is independent of the manufacturer and makes no device certification claim. Developers: [reproducible build and tests](docs/development.md).

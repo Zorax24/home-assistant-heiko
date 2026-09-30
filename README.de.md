@@ -6,17 +6,42 @@ Eine **Custom Integration**, kein Supervisor-Add-on beziehungsweise App. Sie emp
 
 **Stand: 0.5.1, experimentell.** Kommunikation und Schreibvorgänge dieser Version sind **noch nicht an einer echten Wärmepumpe bestätigt**. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
 
-## Schnellstart
+## Installation
 
-1. Unter [Releases](https://github.com/Zorax24/home-assistant-heiko/releases) `heiko_w600-ha-0.5.1.zip` und `SHA256SUMS` herunterladen. Das Installations-ZIP verwenden, nicht das automatisch erzeugte Quellcode-ZIP von GitHub.
-2. Ein Home-Assistant-Backup erstellen. Einen vorhandenen Ordner `heiko_w600` und die bisherigen W600-Zieleinstellungen separat sichern.
-3. Das Installations-ZIP entpacken. Den enthaltenen Ordner `custom_components/heiko_w600` in das Home-Assistant-Konfigurationsverzeichnis kopieren. Danach muss `/config/custom_components/heiko_w600/manifest.json` vorhanden sein. Manche Editoren nennen das Konfigurationsverzeichnis `/homeassistant`. Keinen zweiten verschachtelten Ordner `custom_components` erzeugen.
-4. Home Assistant selbst neu starten. **Einstellungen → Geräte & Dienste → Integration hinzufügen → HEIKO W600** öffnen.
-5. Lokale Listener-Adresse und freien TCP-Port einstellen. Standard ist `0.0.0.0:8899`, also alle lokalen Netzwerkschnittstellen. **Weiterleitung zur Herstellercloud** bewusst wählen; sie ist zur Kompatibilität zunächst aktiv. Hersteller-Referenzwerte sind `www.myheatpump.com:18899`. Das beweist nicht, dass dein Modul genau dieses Ziel verwendet.
-6. Die bestehende TCP-Client-Verbindung des W600 auf die **aus seinem Netz erreichbare LAN-Adresse von Home Assistant** und den gewählten Listener-Port einstellen. Der W600 baut die Verbindung auf. `0.0.0.0` ist eine Bind-Adresse und niemals die Zieladresse für den W600. Vorher [Netzwerk und W600](docs/network.de.md) lesen.
-7. Auf aktuelle Messwerte und Einstellungen warten. Ohne aktuelle, geprüfte Einstellungen bleiben Bedienelemente nicht verfügbar. Danach das Dashboard wie unten beschrieben erstellen.
+### Repository in HACS hinzufügen — für öffentliche Verfügbarkeit vorbereitet
 
-Benötigt werden Dateizugriff auf das HA-Konfigurationsverzeichnis, Berechtigung für einen HA-Neustart, ein W600 mit dem Referenz-TCP-Protokoll sowie eine LAN-/VPN-Route vom W600 zum Listener. Ein funktionierender Browserzugriff auf HA-Port 8123 prüft nicht den W600-Port. **Listener und W600-Verwaltungsoberfläche nicht ins Internet freigeben.**
+Dieser Weg ist für ein öffentlich erreichbares Repository vorbereitet; er ist **noch nicht als Installationsweg getestet**. HACS muss bereits installiert sein. Private Repositories funktionieren mit HACS auch dann nicht, wenn du auf GitHub darauf zugreifen kannst ([offizielle FAQ](https://hacs.dev/docs/faq/private_repositories/)). Bis diese Voraussetzung und die übrigen HACS-Prüfungen erfüllt sind, die drei ZIP-Schritte unten verwenden.
+
+[Repository in HACS öffnen](https://my.home-assistant.io/redirect/hacs_repository/?owner=Zorax24&repository=home-assistant-heiko&category=integration)
+
+Alternativ von Hand hinzufügen:
+
+1. **HACS → ⋮ → Benutzerdefinierte Repositories** öffnen.
+2. `https://github.com/Zorax24/home-assistant-heiko` einfügen, **Integration** wählen und **Hinzufügen** drücken.
+3. **HEIKO W600** öffnen, herunterladen und Home Assistant neu starten.
+4. **Einstellungen → Geräte & Dienste → Integration hinzufügen → HEIKO W600** öffnen.
+
+Kein Supervisor-Add-on-Repository hinzufügen. Für den benutzerdefinierten Weg ist keine HACS-Standardlistenaufnahme nötig. Repository-Verfügbarkeit und eine tatsächliche HACS-Installation müssen trotzdem noch geprüft werden.
+
+### Jetzt ohne HACS installieren — drei Schritte
+
+Vorher Home Assistant sichern. Bei einem Update zusätzlich den bisherigen Integrationsordner aufbewahren.
+
+1. [Installations-ZIP herunterladen](https://github.com/Zorax24/home-assistant-heiko/releases/download/v0.5.1/heiko_w600-ha-0.5.1.zip) und entpacken.
+2. Den enthaltenen Ordner `custom_components/heiko_w600` nach `/config/custom_components/` auf deinem Home-Assistant-Rechner kopieren.
+3. Home Assistant neu starten. Dann [HEIKO W600 hinzufügen](https://my.home-assistant.io/redirect/config_flow_start/?domain=heiko_w600) anklicken oder **Einstellungen → Geräte & Dienste → Integration hinzufügen** verwenden.
+
+Danach liegt die Datei unter `/config/custom_components/heiko_w600/manifest.json`. Manche Editoren nennen `/config` stattdessen `/homeassistant`. Das Installations-ZIP verwenden, nicht das GitHub-Quellcode-ZIP. Die Prüfsumme steht unter [Releases](https://github.com/Zorax24/home-assistant-heiko/releases).
+
+## Wärmepumpe verbinden
+
+1. In der Einrichtung `0.0.0.0` und TCP-Port `8899` belassen, sofern der Port frei ist. Bewusst wählen, ob an MyHeatPump weitergeleitet werden soll.
+2. Im W600 als Ziel seiner bestehenden TCP-Client-Verbindung die **aus seinem LAN/VPN erreichbare Adresse von Home Assistant** und Port `8899` beziehungsweise den gewählten Port eintragen. Das bisherige W600-Ziel vorher sichern.
+3. Auf aktuelle Messwerte und Einstellungen warten und danach [das Dashboard erstellen](#eigenes-dashboard-erstellen).
+
+Der W600 baut die Verbindung auf. `0.0.0.0` ist niemals seine Zieladresse; HA-Webport `8123` gehört zu einem anderen Dienst. **Den Listener nicht ins Internet freigeben.** Das konfigurierbare Hersteller-Referenzziel lautet `www.myheatpump.com:18899`. Bei abweichenden Modul-Einstellungen, Docker/VPN oder fehlenden Daten helfen die [Netzwerk- und W600-Details](docs/network.de.md).
+
+Voraussetzungen: Home Assistant ab 2026.9.4 (geprüft mit 2026.9.4), ein W600 mit dem Referenz-TCP-Protokoll und eine funktionierende LAN-/VPN-Route. Für die ZIP-Installation ist zusätzlich Dateizugriff auf das HA-Konfigurationsverzeichnis nötig. Bedienelemente werden erst mit aktuellen, geprüften Einstellungen verfügbar.
 
 ## Funktionen und tägliche Bedienung
 
@@ -76,6 +101,6 @@ Für Support HA-Version, Integrationsversion und bekannte nicht identifizierende
 
 ## Installationswege, HACS und Lizenz
 
-**Die manuelle ZIP-Installation ist der unterstützte Installationsweg.** Das Installationspaket eines Releases verwenden und dem Schnellstart oben folgen. Das Repository enthält `hacs.json` und folgt den [HACS-Strukturanforderungen für Integrationen](https://www.hacs.dev/docs/publish/integration/). **Eine Installation über HACS wurde noch nicht geprüft.** Die Aufnahme in die HACS-Standardliste und Home Assistant Brands ist nicht abgeschlossen. Metadaten und ein erfolgreicher Hassfest-Test allein belegen keine HACS-Installationsunterstützung.
+**Die manuelle ZIP-Installation ist der unterstützte Installationsweg.** Das Installationspaket eines Releases verwenden und den drei Schritten oben folgen. Das Repository enthält `hacs.json` und folgt den [HACS-Strukturanforderungen für Integrationen](https://www.hacs.dev/docs/publish/integration/). **Eine Installation über HACS wurde noch nicht geprüft.** Die Aufnahme in die HACS-Standardliste und Home Assistant Brands ist nicht abgeschlossen. Metadaten und ein erfolgreicher Hassfest-Test allein belegen keine HACS-Installationsunterstützung.
 
 MIT-Lizenz; [LICENSE](LICENSE) und [Herkunftshinweise](THIRD_PARTY_NOTICES.md) nennen die ioBroker-Referenz. Das Projekt ist unabhängig vom Hersteller und behauptet keine Gerätezertifizierung. Für Entwicklung: [reproduzierbarer Build und Tests](docs/development.md).
