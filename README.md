@@ -2,10 +2,6 @@
 
 # HEIKO W600 for Home Assistant
 
-[![Add HEIKO W600](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=heiko_w600)
-
-Opens setup in your Home Assistant. Install the integration and restart Home Assistant first.
-
 **Vibe-coded:** This project was developed with AI coding assistants. Automated checks do not replace review or testing with your actual heat pump. See [verification and limitations](docs/verification.md).
 
 A **custom integration**, not a Supervisor app/add-on. It receives W600 TCP data in Home Assistant, exposes measurements and the complete reference settings catalog, and can optionally relay the connection to MyHeatPump. No separate server process or cloud account login is required.
