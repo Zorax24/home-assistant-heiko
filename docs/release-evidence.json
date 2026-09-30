@@ -25,7 +25,17 @@
   },
   "privacy_review": "allowlist export, custom path/address/credential checks and manual source/document/image inspection",
   "fresh_checkout": "passed: 60 unit/loopback tests, real HA Core smoke, package and privacy checks",
-  "github_ci": "pending after private push",
+  "github_ci": {
+    "status": "success",
+    "run_id": 36684697663,
+    "tested_sha": "1278eb2f15a0c3718e8a69e3a62865383c9aa455",
+    "url": "https://github.com/Zorax24/home-assistant-heiko/actions/runs/36684697663",
+    "jobs": [
+      "hassfest",
+      "home-assistant",
+      "offline"
+    ]
+  },
   "physical_hardware_test": false,
   "production_changes": false,
   "hacs_install": "not supported for private repositories",
@@ -34,5 +44,6 @@
     "files": 25,
     "sha256": "6b42420784b6c2b47fc31e82a8749e736d48e0d3af819f81468f9caaf7dca623",
     "reproducible_from_fresh_checkout": true
-  }
+  },
+  "hassfest": "passed official Home Assistant hassfest GitHub action"
 }
