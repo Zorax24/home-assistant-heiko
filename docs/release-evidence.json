@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "source_baseline": "complete 0.4.0; source files verified against its installation archive",
   "unit_loopback_tests": 60,
   "local_real_ha_core": "2026.9.4",
@@ -16,7 +16,8 @@
     "invalid language rejection",
     "persistent cloud option without device",
     "loopback port conflict",
-    "unload"
+    "unload",
+    "legacy select alias via actual HA service with synthetic write recorder"
   ],
   "secret_scan": {
     "tool": "Gitleaks 8.30.1",
@@ -25,24 +26,14 @@
   },
   "privacy_review": "allowlist export, custom path/address/credential checks and manual source/document/image inspection",
   "fresh_checkout": "passed: 60 unit/loopback tests, real HA Core smoke, package and privacy checks",
-  "github_ci": {
-    "status": "success",
-    "run_id": 36684697663,
-    "tested_sha": "1278eb2f15a0c3718e8a69e3a62865383c9aa455",
-    "url": "https://github.com/Zorax24/home-assistant-heiko/actions/runs/36684697663",
-    "jobs": [
-      "hassfest",
-      "home-assistant",
-      "offline"
-    ]
-  },
+  "github_ci": "pending current 0.5.1 commit",
   "physical_hardware_test": false,
   "production_changes": false,
   "hacs_install": "not supported for private repositories",
   "brands_submission": false,
   "install_archive": {
     "files": 25,
-    "sha256": "6b42420784b6c2b47fc31e82a8749e736d48e0d3af819f81468f9caaf7dca623",
+    "sha256": "666325f275816908e4929240c1a1c0f7198f31d79abbf7227fc551f101255ee0",
     "reproducible_from_fresh_checkout": true
   },
   "hassfest": "passed official Home Assistant hassfest GitHub action"

@@ -4,11 +4,11 @@
 
 A **custom integration**, not a Supervisor app/add-on. It receives W600 TCP data in Home Assistant, exposes measurements and the complete reference settings catalog, and can optionally relay the connection to MyHeatPump. No separate server process or cloud account login is required.
 
-**Status: 0.5.0, experimental, private distribution.** The repository stays private. Download links work only for authorized GitHub users. Hardware communication and writes with this release have **not** been confirmed on a physical heat pump. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
+**Status: 0.5.1, experimental, private distribution.** The repository stays private. Download links work only for authorized GitHub users. Hardware communication and writes with this release have **not** been confirmed on a physical heat pump. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
 
 ## Quick start
 
-1. Sign in to GitHub with an account authorized for this repository. Open [Releases](https://github.com/Zorax24/home-assistant-heiko/releases), download `heiko_w600-ha-0.5.0.zip` and `SHA256SUMS`. Use the installation ZIP, not GitHub's source ZIP.
+1. Sign in to GitHub with an account authorized for this repository. Open [Releases](https://github.com/Zorax24/home-assistant-heiko/releases), download `heiko_w600-ha-0.5.1.zip` and `SHA256SUMS`. Use the installation ZIP, not GitHub's source ZIP.
 2. Create a Home Assistant backup and keep a copy of any existing `heiko_w600` folder and W600 destination settings.
 3. Extract the installation ZIP. Copy its `custom_components/heiko_w600` folder into your Home Assistant configuration directory. The resulting file must be `/config/custom_components/heiko_w600/manifest.json`. Some editors show the configuration directory as `/homeassistant`. Do not add a second nested `custom_components` directory.
 4. Restart Home Assistant yourself. Open **Settings → Devices & services → Add integration → HEIKO W600**.
@@ -57,7 +57,7 @@ Switching forwarding does not itself set a pump parameter. The W600 socket is pr
 
 ## Updates, backup, rollback and removal
 
-Before updates, back up HA, export any customized dashboard, and keep the previous component folder. Review [CHANGELOG](CHANGELOG.md), especially the 0.5.0 automation state changes. Replace only `/config/custom_components/heiko_w600` with the complete new folder and restart HA. Do not delete/re-add the integration for routine updates: domain, config-entry IDs and entity unique IDs remain unchanged.
+Before updates, back up HA, export any customized dashboard, and keep the previous component folder. Review [CHANGELOG](CHANGELOG.md), especially the 0.5.1 automation state changes. Replace only `/config/custom_components/heiko_w600` with the complete new folder and restart HA. Do not delete/re-add the integration for routine updates: domain, config-entry IDs and entity unique IDs remain unchanged.
 
 To roll back, restore the previous component folder (and dashboard if required), restart HA, and restore the HA backup if configuration changes also need reverting. To remove, first restore a working W600 destination if it depended on this listener, remove the integration in Devices & services, then remove its component folder and restart HA. Remove dashboard rows and automations that reference removed entities. Removing this integration does not undo pump parameters or delete manufacturer data.
 

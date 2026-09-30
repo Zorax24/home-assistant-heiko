@@ -9,6 +9,11 @@ from .parameters import WRITABLE, validate_value
 
 
 class HeikoSelect(HeikoParameterEntity, SelectEntity):
+    async def async_handle_select_option(self, option: str) -> None:
+        """Normalize legacy labels before Home Assistant validates options."""
+        aliases = {label: f"option_{key}" for key, label in self.definition["states"].items()}
+        await super().async_handle_select_option(aliases.get(option, option))
+
     @property
     def options(self) -> list[str]:
         return [f"option_{key}" for key in self.definition["states"]]

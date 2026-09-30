@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.1
+
+- Fix legacy German select-option service aliases at the HA service-handler boundary, before core option validation. Both legacy labels and stable `option_<code>` calls now reach the same protocol value.
+- Add a regression through the real HA `select.select_option` service with a synthetic write recorder, without physical-device transport.
+- Existing 0.5.0 release/tag are preserved. Prefer 0.5.1 for installation.
+
+Alte deutsche Auswahltexte werden jetzt vor der HA-Auswahlprüfung normalisiert. Der echte HA-Service ist mit einem synthetischen Schreibrekorder geprüft. 0.5.0 bleibt erhalten; für Installation 0.5.1 verwenden.
+
 ## 0.5.0
 
 - Prepare a standalone private distribution from the complete 0.4.0 custom integration; retain the full catalog, protocols, CRC checks, readback confirmation, requests and independent optional manufacturer relay.

@@ -49,6 +49,30 @@ async def main():
             cloud_entity = next(item for item in entities if item.unique_id.endswith("_upstream_enabled"))
             assert cloud_entity.original_name == "Forward to MyHeatPump", cloud_entity.original_name
             assert hass.states.get(cloud_entity.entity_id).state == "off"
+            # Validate aliases through the real HA service wrapper, with a synthetic
+            # in-memory write recorder replacing all physical write transport.
+            from datetime import datetime, timezone
+            selection = next(item for item in entities if item.unique_id.endswith("_setting_003"))
+            recorded = []
+            original_write = coordinator.async_write_parameter
+            async def record_write(index, value):
+                recorded.append((index, value))
+            coordinator.async_write_parameter = record_write
+            coordinator._settings["setting_003"] = 1.0
+            coordinator._last_settings = datetime.now(timezone.utc)
+            coordinator.connected = True
+            coordinator._publish()
+            await hass.async_block_till_done()
+            try:
+                for option in ("Heizen", "option_1"):
+                    await hass.services.async_call("select", "select_option", {"entity_id":selection.entity_id,"option":option}, blocking=True)
+                assert recorded == [(3,1.0),(3,1.0)], recorded
+            finally:
+                coordinator.async_write_parameter = original_write
+                coordinator.connected = False
+                coordinator._settings["setting_003"] = None
+                coordinator._last_settings = None
+                coordinator._publish()
             from custom_components.heiko_w600.dashboard import build_dashboard
             for language in ("en", "de"):
                 for category in ("entity", "config", "options", "services", "exceptions"):

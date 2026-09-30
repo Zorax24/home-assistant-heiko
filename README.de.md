@@ -4,11 +4,11 @@
 
 Eine **Custom Integration**, kein Supervisor-Add-on beziehungsweise App. Sie empfängt W600-TCP-Daten direkt in Home Assistant, stellt Messwerte und den vollständigen Referenz-Parameterkatalog bereit und kann die Verbindung optional an MyHeatPump weiterleiten. Dafür sind kein eigener Serverdienst und keine Anmeldung mit einem Cloud-Konto nötig.
 
-**Stand: 0.5.0, experimentell, private Weitergabe.** Das Repository bleibt privat. Downloads funktionieren nur mit einem berechtigten GitHub-Konto. Kommunikation und Schreibvorgänge dieser Version sind **noch nicht an einer echten Wärmepumpe bestätigt**. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
+**Stand: 0.5.1, experimentell, private Weitergabe.** Das Repository bleibt privat. Downloads funktionieren nur mit einem berechtigten GitHub-Konto. Kommunikation und Schreibvorgänge dieser Version sind **noch nicht an einer echten Wärmepumpe bestätigt**. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
 
 ## Schnellstart
 
-1. Mit einem berechtigten GitHub-Konto anmelden. Unter [Releases](https://github.com/Zorax24/home-assistant-heiko/releases) `heiko_w600-ha-0.5.0.zip` und `SHA256SUMS` herunterladen. Das Installations-ZIP verwenden, nicht das automatisch erzeugte Quellcode-ZIP von GitHub.
+1. Mit einem berechtigten GitHub-Konto anmelden. Unter [Releases](https://github.com/Zorax24/home-assistant-heiko/releases) `heiko_w600-ha-0.5.1.zip` und `SHA256SUMS` herunterladen. Das Installations-ZIP verwenden, nicht das automatisch erzeugte Quellcode-ZIP von GitHub.
 2. Ein Home-Assistant-Backup erstellen. Einen vorhandenen Ordner `heiko_w600` und die bisherigen W600-Zieleinstellungen separat sichern.
 3. Das Installations-ZIP entpacken. Den enthaltenen Ordner `custom_components/heiko_w600` in das Home-Assistant-Konfigurationsverzeichnis kopieren. Danach muss `/config/custom_components/heiko_w600/manifest.json` vorhanden sein. Manche Editoren nennen das Konfigurationsverzeichnis `/homeassistant`. Keinen zweiten verschachtelten Ordner `custom_components` erzeugen.
 4. Home Assistant selbst neu starten. **Einstellungen → Geräte & Dienste → Integration hinzufügen → HEIKO W600** öffnen.
@@ -57,7 +57,7 @@ Das Umschalten setzt selbst keinen Wärmepumpenparameter und erhält die W600-Ve
 
 ## Update, Sicherung, Rückkehr und Entfernen
 
-Vor Updates HA sichern, angepasste Dashboards exportieren und den alten Integrationsordner aufbewahren. [Änderungen](CHANGELOG.md) lesen, insbesondere die Automations-Zustandsänderungen in 0.5.0. Nur `/config/custom_components/heiko_w600` vollständig durch den neuen Ordner ersetzen und HA neu starten. Für normale Updates die Integration nicht löschen und erneut anlegen: Domain, Config-Entry-IDs und eindeutige Entitätskennungen bleiben erhalten.
+Vor Updates HA sichern, angepasste Dashboards exportieren und den alten Integrationsordner aufbewahren. [Änderungen](CHANGELOG.md) lesen, insbesondere die Automations-Zustandsänderungen in 0.5.1. Nur `/config/custom_components/heiko_w600` vollständig durch den neuen Ordner ersetzen und HA neu starten. Für normale Updates die Integration nicht löschen und erneut anlegen: Domain, Config-Entry-IDs und eindeutige Entitätskennungen bleiben erhalten.
 
 Zur Rückkehr den alten Integrationsordner und bei Bedarf das Dashboard wiederherstellen und HA neu starten. Bei ebenfalls zurückzunehmenden Konfigurationsänderungen das HA-Backup wiederherstellen. Zum Entfernen zuerst ein funktionierendes W600-Ziel wiederherstellen, falls der W600 diesen Listener benötigt. Anschließend Integration unter Geräte & Dienste entfernen, ihren Komponentenordner löschen und HA neu starten. Verweise in Dashboards und Automationen bereinigen. Das Entfernen setzt keine Wärmepumpenparameter zurück und löscht keine Herstellerdaten.
 
