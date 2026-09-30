@@ -2,6 +2,10 @@
 
 # HEIKO W600 für Home Assistant
 
+[![HEIKO W600 hinzufügen](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=heiko_w600)
+
+Öffnet die Einrichtung in deinem Home Assistant. Die Integration vorher installieren und Home Assistant neu starten.
+
 **Vibe-coded:** Dieses Projekt wurde mit KI-Coding-Assistenten entwickelt. Automatisierte Prüfungen ersetzen keine fachliche Prüfung und keinen Test mit deiner tatsächlichen Wärmepumpe. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
 
 Eine **Custom Integration**, kein Supervisor-Add-on beziehungsweise App. Sie empfängt W600-TCP-Daten direkt in Home Assistant, stellt Messwerte und den vollständigen Referenz-Parameterkatalog bereit und kann die Verbindung optional an MyHeatPump weiterleiten. Dafür sind kein eigener Serverdienst und keine Anmeldung mit einem Cloud-Konto nötig.
@@ -14,7 +18,7 @@ Eine **Custom Integration**, kein Supervisor-Add-on beziehungsweise App. Sie emp
 
 Dieser Weg ist für ein öffentlich erreichbares Repository vorbereitet; er ist **noch nicht als Installationsweg getestet**. HACS muss bereits installiert sein. Private Repositories funktionieren mit HACS auch dann nicht, wenn du auf GitHub darauf zugreifen kannst ([offizielle FAQ](https://hacs.dev/docs/faq/private_repositories/)). Bis diese Voraussetzung und die übrigen HACS-Prüfungen erfüllt sind, die drei ZIP-Schritte unten verwenden.
 
-[Repository in HACS öffnen](https://my.home-assistant.io/redirect/hacs_repository/?owner=Zorax24&repository=home-assistant-heiko&category=integration)
+[![Repository in HACS öffnen](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Zorax24&repository=home-assistant-heiko&category=integration)
 
 Alternativ von Hand hinzufügen:
 
