@@ -6,7 +6,7 @@
 
 Der Referenzkatalog enthält 128 eindeutige benannte Indizes, davon 125 schreibbare und drei nur lesbare Versionswerte. Alle bisherigen Definitionen, Grenzen, Typen, Ganzzahlvorgaben, Einheiten und numerischen Protokoll-Auswahlwerte bleiben erhalten. CMD01 dekodiert die Referenznutzlast mit 43 Feldern; nicht jedes Rohfeld hat eine sinnvolle öffentliche Entität. Entitätsanlage wird anhand der tatsächlichen Plattformdefinitionen geprüft und nicht aus früheren Installationsaussagen übernommen.
 
-Ziel ist ausschließlich die Reglerfamilie mit W600-Referenzprotokoll. Für 0.5.0 gibt es **keine mit Hardware bestätigte Modell-/Firmwareliste**. Weitere Markennamen im Referenzadapter beweisen keine Kompatibilität. Erfolgreiches Laden, Entitätszahl, Dashboard und simulierte Bestätigungen sind kein physischer Geräte-Abnahmetest.
+Ziel ist ausschließlich die Reglerfamilie mit W600-Referenzprotokoll. Für 0.5.1 gibt es **keine mit Hardware bestätigte Modell-/Firmwareliste**. Weitere Markennamen im Referenzadapter beweisen keine Kompatibilität. Erfolgreiches Laden, Entitätszahl, Dashboard und simulierte Bestätigungen sind kein physischer Geräte-Abnahmetest.
 
 Lokale CMD01-/CMD02-Bestätigungen, Cloud-Umschaltung, Erhalt der W600-Verbindung, Wiederverbindung, Befehlsserialisierung, CMD05-Schreiben mit anschließendem CMD07 und neuer passender CMD02-Antwort, Datenalter, CRC-Fehler und falsche Geräteidentität werden mit synthetischen Rahmen und Loopback-Servern geprüft. Parametertests betätigen keine Hardware. Ein Zeitablauf nach dem Senden beweist nicht, dass das Gerät den Wert abgelehnt hat.
 

@@ -6,7 +6,7 @@
 
 The reference catalog contains 128 unique named indices, including 125 writable and three read-only version entries. All baseline definitions, ranges, types, integer flags, units and protocol enum numeric values are retained. CMD01 decoding covers the reference 43-field payload; not every raw field has a useful public entity. Entity creation is checked from the actual platform definitions, not a past deployment claim.
 
-Only the W600 reference framing/controller family is targeted. There is **no hardware-verified model/firmware matrix** for 0.5.0. Names of other heat-pump brands in an upstream adapter do not establish compatibility. A loaded integration, entity count, successful dashboard or simulated ACK is not a physical-device acceptance test.
+Only the W600 reference framing/controller family is targeted. There is **no hardware-verified model/firmware matrix** for 0.5.1. Names of other heat-pump brands in an upstream adapter do not establish compatibility. A loaded integration, entity count, successful dashboard or simulated ACK is not a physical-device acceptance test.
 
 Local-mode CMD01/CMD02 acknowledgements, cloud toggling, socket preservation, reconnect, command serialization, CMD05 writes followed by CMD07 and a new matching CMD02, stale values, CRC failures and identity mismatch are covered using synthetic frames and loopback servers. Parameter tests do not actuate hardware. A timeout after sending a write does not mean the device rejected it.
 
