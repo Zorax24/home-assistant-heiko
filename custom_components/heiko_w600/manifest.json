@@ -1,0 +1,15 @@
+{
+  "domain": "heiko_w600",
+  "name": "HEIKO W600",
+  "codeowners": [
+    "@Zorax24"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/Zorax24/home-assistant-heiko",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/Zorax24/home-assistant-heiko/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "0.5.0"
+}

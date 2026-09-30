@@ -1,0 +1,2574 @@
+{
+  "title": "HEIKO W600",
+  "config": {
+    "step": {
+      "user": {
+        "title": "HEIKO W600",
+        "description": "Richtet W600-Listener, Upstream-Weiterleitung und schreibbare Katalogparameter einschließlich Serviceeinstellungen ein. Schreiben erfordert eine aktive W600-Verbindung und eine frische CMD02-Rückmeldung. Host und Ports sind Referenzwerte; die Endpunkte werden beim Einrichten nicht getestet. Die Herstellerweiterleitung ist zur Kompatibilität standardmäßig aktiv; bewusst auswählen. Service- und Schutzparameter erfordern Fachkenntnisse.",
+        "data": {
+          "listen_host": "TCP-Listener-Adresse",
+          "listen_port": "TCP-Listener-Port",
+          "upstream_host": "Hersteller-Upstream-Host",
+          "upstream_port": "Hersteller-Upstream-Port",
+          "stale_seconds": "Timeout für veraltete Telemetrie (Sekunden)",
+          "upstream_enabled": "Weiterleitung zur Herstellercloud"
+        }
+      }
+    },
+    "error": {
+      "invalid_input": "Alle erforderlichen Verbindungseinstellungen eingeben.",
+      "invalid_listen_host": "Gib eine IP-Adresse oder einen gültigen Hostnamen für den Listener ein.",
+      "invalid_listen_port": "Gib für den Listener einen TCP-Port von 1 bis 65535 ein.",
+      "invalid_upstream_host": "Gib eine IP-Adresse oder einen gültigen Hostnamen für den Upstream ein.",
+      "invalid_upstream_port": "Gib für den Upstream einen TCP-Port von 1 bis 65535 ein.",
+      "invalid_stale_seconds": "Gib eine ganze Sekundenzahl von 30 bis 3600 ein.",
+      "invalid_upstream_enabled": "Ein boolescher Schaltwert ist erforderlich."
+    },
+    "abort": {
+      "already_configured": "Pro Home-Assistant-Instanz wird nur ein HEIKO-W600-Konfigurationseintrag unterstützt."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "par04": {
+        "name": "Vorlauftemperatur"
+      },
+      "par05": {
+        "name": "Rücklauftemperatur"
+      },
+      "par06": {
+        "name": "Temperatur am Plattenwärmetauscher"
+      },
+      "par07": {
+        "name": "Warmwassertemperatur"
+      },
+      "par08": {
+        "name": "Heiz-/Kühlwassertemperatur"
+      },
+      "par09": {
+        "name": "Temperatur Mischerkreis 1"
+      },
+      "par10": {
+        "name": "Temperatur Mischerkreis 2"
+      },
+      "par11": {
+        "name": "Raumtemperatur"
+      },
+      "par20": {
+        "name": "Verdichterfrequenz"
+      },
+      "par21": {
+        "name": "Öffnungsgrad des elektronischen Expansionsventils"
+      },
+      "par22": {
+        "name": "Hochdruck"
+      },
+      "par23": {
+        "name": "Niederdruck"
+      },
+      "par24": {
+        "name": "Außentemperatur"
+      },
+      "par25": {
+        "name": "Verdichter-Austrittstemperatur"
+      },
+      "par26": {
+        "name": "Verdichter-Ansaugtemperatur"
+      },
+      "par27": {
+        "name": "Temperatur des Außenwärmetauschers"
+      },
+      "par28": {
+        "name": "Drehzahl Außenventilator 1"
+      },
+      "par29": {
+        "name": "Drehzahl Außenventilator 2"
+      },
+      "par30": {
+        "name": "Stromaufnahme"
+      },
+      "par31": {
+        "name": "Versorgungsspannung"
+      },
+      "par36": {
+        "name": "Effektiver Vorlaufsollwert"
+      },
+      "par01": {
+        "name": "Aktive Funktion (Code)"
+      },
+      "par12": {
+        "name": "PWM-Signal Pumpe P0"
+      },
+      "par13": {
+        "name": "Mischerventilsignal 1"
+      },
+      "par14": {
+        "name": "Mischerventilsignal 2"
+      },
+      "par37": {
+        "name": "Regler-Softwareversion"
+      },
+      "par38": {
+        "name": "Berechnete Verdichterstufe"
+      },
+      "par39": {
+        "name": "Saugüberhitzung"
+      },
+      "par40": {
+        "name": "Druckgasüberhitzung"
+      },
+      "par41": {
+        "name": "Zusatzheizung AH Laufzeit"
+      },
+      "par42": {
+        "name": "Zusatzwärmequelle HBH Laufzeit"
+      },
+      "par43": {
+        "name": "Warmwasser-Zusatzheizung HWTBH Laufzeit"
+      },
+      "setting_001": {
+        "name": "Softwareversion",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_002": {
+        "name": "Datenbankversion",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_137": {
+        "name": "EEPROM-Version der Außengeräteplatine",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "connection_state": {
+        "name": "Verbindungszustand",
+        "state": {
+          "stopped": "Listener gestoppt",
+          "waiting": "Warte auf Wärmepumpe",
+          "measurements_stale": "Verbunden, Messwerte fehlen oder sind veraltet",
+          "settings_stale": "Messwerte aktuell, Einstellungen fehlen oder sind veraltet",
+          "fresh": "Messwerte und Einstellungen aktuell"
+        },
+        "state_attributes": {
+          "tcp_port": {
+            "name": "TCP-Listener-Port"
+          },
+          "weiterleitung_aktiv": {
+            "name": "Herstellerweiterleitung aktiv"
+          },
+          "w600_verbunden": {
+            "name": "W600 verbunden"
+          },
+          "hersteller_verbunden": {
+            "name": "Hersteller verbunden"
+          },
+          "messwerte_aktuell": {
+            "name": "Messwerte aktuell"
+          },
+          "einstellungen_aktuell": {
+            "name": "Einstellungen aktuell"
+          }
+        }
+      },
+      "bytes_to_cloud": {
+        "name": "Daten zur Herstellercloud"
+      },
+      "bytes_to_unit": {
+        "name": "Daten zur Wärmepumpe"
+      },
+      "frames_received": {
+        "name": "CRC-geprüfte Telegramme"
+      },
+      "last_write_result": {
+        "name": "Letzter Schreibauftrag",
+        "state": {
+          "none": "Noch kein Schreibauftrag",
+          "confirmed": "In CMD02 bestätigt",
+          "unconfirmed": "Nicht bestätigt; Ergebnis unbekannt",
+          "aborted": "Abgebrochen; aktuellen Wert prüfen"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "requested_value": {
+            "name": "Angeforderter Wert"
+          }
+        }
+      },
+      "realtime_age": {
+        "name": "Alter der Messwerte"
+      },
+      "settings_age": {
+        "name": "Alter der Einstellungen"
+      }
+    },
+    "binary_sensor": {
+      "par15": {
+        "name": "Durchflussschalter aktiv"
+      },
+      "par32": {
+        "name": "Abtauung aktiv"
+      },
+      "par33": {
+        "name": "Pumpe P0 in Betrieb"
+      },
+      "par34": {
+        "name": "Pumpe P1 in Betrieb"
+      },
+      "par35": {
+        "name": "Pumpe P2 in Betrieb"
+      },
+      "compressor_running": {
+        "name": "Verdichter in Betrieb"
+      }
+    },
+    "switch": {
+      "setting_000": {
+        "name": "Ein/Aus",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_005": {
+        "name": "Warmwasser freigeben",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_006": {
+        "name": "Heizen freigeben",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_007": {
+        "name": "Kühlen freigeben",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_009": {
+        "name": "Grundlegende Betriebsmodi aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_018": {
+        "name": "Zeitprogramm für Heizen und Kühlen",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_023": {
+        "name": "Heizkurve aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_034": {
+        "name": "Raumtemperatureinfluss auf die Heizkurve",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_040": {
+        "name": "Anti-Legionellen-Funktion aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_044": {
+        "name": "Ferienmodus aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_047": {
+        "name": "Zusätzliche Wärmequelle für Heizen aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_049": {
+        "name": "Zusätzliche Wärmequelle für Warmwasser aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_053": {
+        "name": "Notbetrieb aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_056": {
+        "name": "Wechselnde Priorität aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_061": {
+        "name": "Wechselnde Priorität mit HWTBH aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_062": {
+        "name": "Warmwasserspeicher-Funktion aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_063": {
+        "name": "Nachheizfunktion aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_066": {
+        "name": "Heiz-/Kühlkreis 2 aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_068": {
+        "name": "Heizkurve Kreis 2 aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_077": {
+        "name": "Reduzierten Heiz-Sollwert aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_079": {
+        "name": "Schlaffunktion aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_082": {
+        "name": "EVU-Sperre aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_083": {
+        "name": "Zusatzheizung HBH während der EVU-Sperre",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_084": {
+        "name": "Umwälzpumpe P0 während der EVU-Sperre",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_091": {
+        "name": "Pufferspeicher vorhanden",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_092": {
+        "name": "Mischventil 1 aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_093": {
+        "name": "Mischventil 2 aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_094": {
+        "name": "Pumpe P1 im Heizbetrieb",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_095": {
+        "name": "Pumpe P1 im Kühlbetrieb",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_096": {
+        "name": "Pumpe P1 bei externem Signal",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_097": {
+        "name": "Pumpe P2 im Heizbetrieb",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_098": {
+        "name": "Pumpe P2 im Kühlbetrieb",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_099": {
+        "name": "Pumpe P2 bei externem Signal",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_100": {
+        "name": "Estrich-Austrocknung aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_113": {
+        "name": "Arbeitsmodus-Umschaltung für Abtauung",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_123": {
+        "name": "Warmwasser-ECO-Funktion aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_125": {
+        "name": "Heizungs-ECO-Funktion aktivieren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_127": {
+        "name": "Verrutschten Warmwasserfühler erkennen",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_128": {
+        "name": "Signal zum Abschalten der Außengeräteversorgung",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_133": {
+        "name": "Zusatzheizung AH sperren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_134": {
+        "name": "Zusatzheizung AH abhängig von der Außentemperatur sperren",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "upstream_enabled": {
+        "name": "Weiterleitung an MyHeatPump"
+      }
+    },
+    "select": {
+      "setting_003": {
+        "name": "Arbeitsmodus",
+        "state": {
+          "option_0": "Standby",
+          "option_1": "Heizen",
+          "option_2": "Kühlen",
+          "option_3": "Warmwasser",
+          "option_4": "Auto"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_008": {
+        "name": "Freigabe für Heizen und Kühlen",
+        "state": {
+          "option_0": "Deaktiviert",
+          "option_1": "Außentemperatur",
+          "option_2": "Externes Signal",
+          "option_3": "Externes Signal und Außentemperatur"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_048": {
+        "name": "Priorität der zusätzlichen Wärmequelle für Heizen (HBH)",
+        "state": {
+          "option_0": "Niedriger als AH",
+          "option_1": "Höher als AH"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_050": {
+        "name": "Priorität der zusätzlichen Wärmequelle für Warmwasser (HWTBH)",
+        "state": {
+          "option_0": "Niedriger als AH",
+          "option_1": "Höher als AH"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_081": {
+        "name": "Schaltlogik der EVU-Sperre",
+        "state": {
+          "option_0": "Ruhekontakt (NC)",
+          "option_1": "Arbeitskontakt (NO)"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_085": {
+        "name": "Displaybeleuchtung",
+        "state": {
+          "option_0": "Ständig",
+          "option_1": "3 min.",
+          "option_2": "5 min.",
+          "option_3": "10 min."
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_086": {
+        "name": "Pumpentyp P0",
+        "state": {
+          "option_0": "Drehzahlgeregelte DC-Pumpe (PWM)",
+          "option_1": "AC Pumpe"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_087": {
+        "name": "Drehzahlstufe P0",
+        "state": {
+          "option_0": "Hohe Drehzahl",
+          "option_1": "Mittlere Drehzahl",
+          "option_2": "Niedrige Drehzahl"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_088": {
+        "name": "Betriebsweise P0",
+        "state": {
+          "option_0": "Intervallfunktion",
+          "option_1": "Ständig",
+          "option_2": "Aus zusammen mit Verdichter"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_118": {
+        "name": "Arbeitsmodus-Signalausgang",
+        "state": {
+          "option_0": "Kein Ausgang",
+          "option_1": "Heizen",
+          "option_2": "Kühlen"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_119": {
+        "name": "Schaltlogik des Arbeitsmodus-Signalausgangs",
+        "state": {
+          "option_0": "Ruhekontakt (NC)",
+          "option_1": "Arbeitskontakt (NO)"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_130": {
+        "name": "Pumpendrehzahl im Heizbetrieb",
+        "state": {
+          "option_0": "Hohe Drehzahl",
+          "option_1": "Mittlere Drehzahl",
+          "option_2": "Niedrige Drehzahl"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_131": {
+        "name": "Pumpendrehzahl im Kühlbetrieb",
+        "state": {
+          "option_0": "Hohe Drehzahl",
+          "option_1": "Mittlere Drehzahl",
+          "option_2": "Niedrige Drehzahl"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_132": {
+        "name": "Pumpendrehzahl im Warmwasserbetrieb",
+        "state": {
+          "option_0": "Hohe Drehzahl",
+          "option_1": "Mittlere Drehzahl",
+          "option_2": "Niedrige Drehzahl"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      }
+    },
+    "number": {
+      "setting_010": {
+        "name": "Außentemperaturgrenze für Heizfreigabe",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_011": {
+        "name": "Außentemperaturgrenze für Kühlfreigabe",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_012": {
+        "name": "Maximale Dauer bei minimaler Verdichterdrehzahl",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_019": {
+        "name": "Ausschaltdifferenz der Wassertemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_020": {
+        "name": "Einschaltdifferenz der Wassertemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_021": {
+        "name": "Differenz zur Reduzierung der Verdichterdrehzahl",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_022": {
+        "name": "Kühl-Solltemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_024": {
+        "name": "Heizkurve Außentemperatur Punkt 1",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_025": {
+        "name": "Heizkurve Außentemperatur Punkt 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_026": {
+        "name": "Heizkurve Außentemperatur Punkt 3",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_027": {
+        "name": "Heizkurve Außentemperatur Punkt 4",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_028": {
+        "name": "Heizkurve Außentemperatur Punkt 5",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_029": {
+        "name": "Heizkurve Vorlauftemperatur Punkt 1",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_030": {
+        "name": "Heizkurve Vorlauftemperatur Punkt 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_031": {
+        "name": "Heizkurve Vorlauftemperatur Punkt 3",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_032": {
+        "name": "Heizkurve Vorlauftemperatur Punkt 4",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_033": {
+        "name": "Heizkurve Vorlauftemperatur Punkt 5",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_035": {
+        "name": "Raum-Solltemperatur Heizen",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_036": {
+        "name": "Raum-Solltemperatur Kühlen",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_037": {
+        "name": "Vorlauf-Solltemperatur ohne Heizkurve",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_038": {
+        "name": "Minimale Vorlauftemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_039": {
+        "name": "Maximale Vorlauftemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_041": {
+        "name": "Anti-Legionellen-Solltemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_042": {
+        "name": "Anti-Legionellen-Haltedauer",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_043": {
+        "name": "Maximale Anti-Legionellen-Laufzeit",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_045": {
+        "name": "Warmwasser-Temperaturabsenkung im Ferienmodus",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_046": {
+        "name": "Heizwasser-Temperaturabsenkung im Ferienmodus",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_051": {
+        "name": "Startfaktor der externen Wärmequelle (Delta T/Zeit)",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_052": {
+        "name": "Messintervall für den HWTBH-Start",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_054": {
+        "name": "Warmwasser-Solltemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_055": {
+        "name": "Warmwasser-Einschaltdifferenz",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_057": {
+        "name": "Außentemperaturgrenze für wechselnde Priorität",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_058": {
+        "name": "Minimale Warmwasser-Ladezeit",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_059": {
+        "name": "Maximale Heizlaufzeit",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_060": {
+        "name": "Zulässige Abweichung der Heiztemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_064": {
+        "name": "Nachheiz-Solltemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_065": {
+        "name": "Nachheiz-Einschaltdifferenz",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_067": {
+        "name": "Kühl-Solltemperatur Kreis 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_069": {
+        "name": "Außen-/Wassertemperatur-Kennwert A",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_070": {
+        "name": "Außen-/Wassertemperatur-Kennwert B",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_071": {
+        "name": "Außen-/Wassertemperatur-Kennwert C",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_072": {
+        "name": "Außen-/Wassertemperatur-Kennwert D",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_073": {
+        "name": "Außen-/Wassertemperatur-Kennwert E",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_074": {
+        "name": "Vorlauf-Solltemperatur Kreis 2 ohne Heizkurve",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_075": {
+        "name": "Maximale Vorlauftemperatur Kreis 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_076": {
+        "name": "Minimale Vorlauftemperatur Kreis 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_078": {
+        "name": "Absenkungs-/Anhebungswert",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_080": {
+        "name": "Temperaturabweichung der Schlaffunktion",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_089": {
+        "name": "Pausenzeit P0 im Intervallbetrieb",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_090": {
+        "name": "Laufzeit P0 im Intervallbetrieb",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_101": {
+        "name": "Aktuelle Stufe der Estrich-Austrocknung",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_102": {
+        "name": "Dauer der aktuellen Stufe",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_103": {
+        "name": "Aktuelle Solltemperatur der Estrich-Austrocknung",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_104": {
+        "name": "Dauer im Solltemperaturbereich",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_105": {
+        "name": "Gesamtdauer der Estrich-Austrocknung",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_106": {
+        "name": "Höchste erreichte Vorlauftemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_107": {
+        "name": "Frostschutz Stufe 1: Start-Außentemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_108": {
+        "name": "Frostschutz Stufe 2: Start-Außentemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_109": {
+        "name": "Frostschutz Stufe 2: Stopp-Außentemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_110": {
+        "name": "Frostschutz Stufe 2: Start-Wassertemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_111": {
+        "name": "Frostschutz Stufe 2: Stopp-Wassertemperatur",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_115": {
+        "name": "Umschaltzeit des Dreiwegeventils",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_116": {
+        "name": "Versorgungszeit des Dreiwegeventils",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_117": {
+        "name": "Maximale Lüfterleistung",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_120": {
+        "name": "Parallelverschiebung der Heizkurve 1",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_121": {
+        "name": "Parallelverschiebung der Heizkurve 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_124": {
+        "name": "Außentemperaturgrenze für Warmwasser-ECO",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_126": {
+        "name": "Außentemperaturgrenze für Heizungs-ECO",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_129": {
+        "name": "Außentemperatur zum Beenden der Außengeräte-Abschaltung",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      },
+      "setting_135": {
+        "name": "Außentemperaturgrenze zum Sperren der Zusatzheizung AH",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Parameterindex"
+          },
+          "section": {
+            "name": "Bereich"
+          },
+          "confirmation": {
+            "name": "Bestätigungsrahmen"
+          },
+          "source": {
+            "name": "Referenzquelle"
+          }
+        }
+      }
+    },
+    "button": {
+      "request_06": {
+        "name": "Messwerte abfragen"
+      },
+      "request_07": {
+        "name": "Einstellungen abfragen"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "HEIKO W600",
+        "description": "Verbindung und Datenalter ändern. Beim Speichern wird die Integration neu geladen. Entitäten und Zuordnungen bleiben erhalten.",
+        "data": {
+          "listen_host": "TCP-Listener-Adresse",
+          "listen_port": "TCP-Listener-Port",
+          "upstream_host": "Hersteller-Upstream-Host",
+          "upstream_port": "Hersteller-Upstream-Port",
+          "stale_seconds": "Timeout für veraltete Telemetrie (Sekunden)",
+          "upstream_enabled": "Weiterleitung zur Herstellercloud"
+        }
+      }
+    },
+    "error": {
+      "invalid_input": "Alle erforderlichen Verbindungseinstellungen eingeben.",
+      "invalid_listen_host": "Gib eine IP-Adresse oder einen gültigen Hostnamen für den Listener ein.",
+      "invalid_listen_port": "Gib für den Listener einen TCP-Port von 1 bis 65535 ein.",
+      "invalid_upstream_host": "Gib eine IP-Adresse oder einen gültigen Hostnamen für den Upstream ein.",
+      "invalid_upstream_port": "Gib für den Upstream einen TCP-Port von 1 bis 65535 ein.",
+      "invalid_stale_seconds": "Gib eine ganze Sekundenzahl von 30 bis 3600 ein.",
+      "invalid_upstream_enabled": "Ein boolescher Schaltwert ist erforderlich."
+    }
+  },
+  "services": {
+    "export_dashboard": {
+      "name": "Wärmepumpen-Dashboard erzeugen",
+      "description": "Liefert YAML mit den registrierten Entitäten dieser Installation. In ein neues Dashboard kopieren; kein Dashboard wird überschrieben.",
+      "fields": {
+        "language": {
+          "name": "Sprache",
+          "description": "en oder de; standardmäßig die Home-Assistant-Systemsprache."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "listener_unavailable": {
+      "message": "W600-Listener kann nicht gestartet werden. Lokale Adresse, belegten Port und Berechtigungen prüfen. Diese Meldung enthält keine private Adresse."
+    },
+    "invalid_language": {
+      "message": "Bitte en oder de wählen."
+    },
+    "not_configured": {
+      "message": "Zuerst die HEIKO-Integration einrichten."
+    },
+    "read_only": {
+      "message": "Dieser Parameter ist nur lesbar."
+    },
+    "boolean_required": {
+      "message": "Ein boolescher Schaltwert ist erforderlich."
+    },
+    "numeric_required": {
+      "message": "Ein Zahlenwert ist erforderlich."
+    },
+    "finite_integer_required": {
+      "message": "Ein endlicher Wert ist erforderlich; dieser Parameter kann eine ganze Zahl verlangen."
+    },
+    "below_minimum": {
+      "message": "Wert liegt unter dem Katalogminimum."
+    },
+    "above_maximum": {
+      "message": "Wert liegt über dem Katalogmaximum."
+    },
+    "unsupported_selection": {
+      "message": "Nicht unterstützte Katalogauswahl."
+    },
+    "not_writable": {
+      "message": "Parameter ist nicht im schreibbaren Katalog."
+    },
+    "settings_unavailable": {
+      "message": "Eine aktive W600-Verbindung und aktuelle Einstellungen sind erforderlich."
+    },
+    "cloud_write_pending": {
+      "message": "Ein Hersteller-Schreibauftrag ist noch offen. Aktuelle Einstellungen abwarten."
+    },
+    "connection_changed": {
+      "message": "Die W600-Verbindung hat sich während der Anfrage geändert."
+    },
+    "write_unconfirmed": {
+      "message": "Kein aktuelles CMD02 hat den Wert bestätigt. Das Geräteergebnis ist unbekannt; vor Wiederholung den aktuellen Wert prüfen."
+    },
+    "unsupported_request": {
+      "message": "Nicht unterstützte Leseanfrage."
+    },
+    "not_connected": {
+      "message": "Keine aktive W600-Verbindung."
+    },
+    "request_failed": {
+      "message": "Die W600-Leseanfrage ist fehlgeschlagen."
+    },
+    "session_ended": {
+      "message": "Die W600-Sitzung wurde beendet oder geändert."
+    },
+    "concurrent_cloud_write": {
+      "message": "Ein gleichzeitiger Hersteller-Schreibauftrag hat die Anfrage unterbrochen."
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": "0.5.0",
+  "source_baseline": "complete 0.4.0; source files verified against its installation archive",
+  "unit_loopback_tests": 60,
+  "local_real_ha_core": "2026.9.4",
+  "real_ha_registered_entities": 176,
+  "translations": [
+    "en",
+    "de"
+  ],
+  "local_ha_gates": [
+    "setup",
+    "entity translations",
+    "options form",
+    "dashboard export in both languages",
+    "invalid language rejection",
+    "persistent cloud option without device",
+    "loopback port conflict",
+    "unload"
+  ],
+  "secret_scan": {
+    "tool": "Gitleaks 8.30.1",
+    "source_findings": 0,
+    "method": "local only; redacted report excluded from repository"
+  },
+  "privacy_review": "allowlist export, custom path/address/credential checks and manual source/document/image inspection",
+  "fresh_checkout": "passed: 60 unit/loopback tests, real HA Core smoke, package and privacy checks",
+  "github_ci": "pending after private push",
+  "physical_hardware_test": false,
+  "production_changes": false,
+  "hacs_install": "not supported for private repositories",
+  "brands_submission": false,
+  "install_archive": {
+    "files": 25,
+    "sha256": "6b42420784b6c2b47fc31e82a8749e736d48e0d3af819f81468f9caaf7dca623",
+    "reproducible_from_fresh_checkout": true
+  }
+}

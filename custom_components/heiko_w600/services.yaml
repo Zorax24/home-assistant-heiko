@@ -1,0 +1,9 @@
+export_dashboard:
+  fields:
+    language:
+      example: en
+      selector:
+        select:
+          options:
+            - en
+            - de
