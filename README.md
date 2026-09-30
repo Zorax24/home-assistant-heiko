@@ -2,6 +2,8 @@
 
 # HEIKO W600 for Home Assistant
 
+**Vibe-coded:** This project was developed with AI coding assistants. Automated checks do not replace review or testing with your actual heat pump. See [verification and limitations](docs/verification.md).
+
 A **custom integration**, not a Supervisor app/add-on. It receives W600 TCP data in Home Assistant, exposes measurements and the complete reference settings catalog, and can optionally relay the connection to MyHeatPump. No separate server process or cloud account login is required.
 
 **Status: 0.5.1, experimental.** Hardware communication and writes with this release have **not** been confirmed on a physical heat pump. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
