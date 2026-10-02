@@ -6,12 +6,12 @@
         "title": "HEIKO W600",
         "description": "Set up a W600 listener, upstream proxy, and catalog-backed controls including service settings. Writes require an active W600 connection and fresh CMD02 readback. Default host and ports are reference values; setup does not test either endpoint. Manufacturer forwarding defaults to enabled for compatibility; choose deliberately. Service and protection parameters require qualified knowledge.",
         "data": {
-          "listen_host": "TCP listener host",
-          "listen_port": "TCP listener port",
-          "upstream_host": "Manufacturer upstream host",
-          "upstream_port": "Manufacturer upstream port",
-          "stale_seconds": "Telemetry stale timeout (seconds)",
-          "upstream_enabled": "Forward to manufacturer cloud"
+          "listen_host": "Local listener address",
+          "listen_port": "Local TCP port",
+          "upstream_host": "MyHeatPump server",
+          "upstream_port": "MyHeatPump TCP port",
+          "stale_seconds": "Maximum data age (seconds)",
+          "upstream_enabled": "MyHeatPump forwarding"
         }
       }
     },
@@ -22,7 +22,7 @@
       "invalid_upstream_host": "Enter an IP address or valid host name for the upstream.",
       "invalid_upstream_port": "Enter a TCP port from 1 to 65535 for the upstream.",
       "invalid_stale_seconds": "Enter a whole number of seconds from 30 to 3600.",
-      "invalid_upstream_enabled": "A boolean switch value is required."
+      "invalid_upstream_enabled": "Choose On or Off."
     },
     "abort": {
       "already_configured": "Only one HEIKO W600 config entry is supported per Home Assistant instance."
@@ -180,8 +180,8 @@
       "connection_state": {
         "name": "Connection status",
         "state": {
-          "stopped": "Listener stopped",
-          "waiting": "Waiting for heat pump",
+          "stopped": "Data listener off",
+          "waiting": "Waiting for W600 connection",
           "measurements_stale": "Connected; measurements missing or stale",
           "settings_stale": "Measurements fresh; settings missing or stale",
           "fresh": "Measurements and settings fresh"
@@ -214,13 +214,13 @@
         "name": "Data to heat pump"
       },
       "frames_received": {
-        "name": "CRC-validated frames"
+        "name": "Valid protocol frames"
       },
       "last_write_result": {
-        "name": "Last write request",
+        "name": "Last setting change",
         "state": {
-          "none": "No write request",
-          "confirmed": "Confirmed in CMD02",
+          "none": "No change requested",
+          "confirmed": "Confirmed",
           "unconfirmed": "Not confirmed; outcome unknown",
           "aborted": "Aborted; check current value"
         },
@@ -242,27 +242,51 @@
     },
     "binary_sensor": {
       "par15": {
-        "name": "Flow switch active"
+        "name": "Flow switch",
+        "state": {
+          "on": "On",
+          "off": "Off"
+        }
       },
       "par32": {
-        "name": "Defrost active"
+        "name": "Defrost",
+        "state": {
+          "on": "On",
+          "off": "Off"
+        }
       },
       "par33": {
-        "name": "Pump P0 running"
+        "name": "Pump P0",
+        "state": {
+          "on": "On",
+          "off": "Off"
+        }
       },
       "par34": {
-        "name": "Pump P1 running"
+        "name": "Pump P1",
+        "state": {
+          "on": "On",
+          "off": "Off"
+        }
       },
       "par35": {
-        "name": "Pump P2 running"
+        "name": "Pump P2",
+        "state": {
+          "on": "On",
+          "off": "Off"
+        }
       },
       "compressor_running": {
-        "name": "Compressor running"
+        "name": "Compressor",
+        "state": {
+          "on": "On",
+          "off": "Off"
+        }
       }
     },
     "switch": {
       "setting_000": {
-        "name": "Power",
+        "name": "Heat pump",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -279,7 +303,7 @@
         }
       },
       "setting_005": {
-        "name": "Enable domestic hot water",
+        "name": "Domestic hot-water enable",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -296,7 +320,7 @@
         }
       },
       "setting_006": {
-        "name": "Enable heating",
+        "name": "Heating enable",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -313,7 +337,7 @@
         }
       },
       "setting_007": {
-        "name": "Enable cooling",
+        "name": "Cooling enable",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -330,7 +354,7 @@
         }
       },
       "setting_009": {
-        "name": "Enable basic operating modes",
+        "name": "Basic operating modes",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -364,7 +388,7 @@
         }
       },
       "setting_023": {
-        "name": "Enable heating curve",
+        "name": "Heating curve",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -398,7 +422,7 @@
         }
       },
       "setting_040": {
-        "name": "Enable anti-legionella function",
+        "name": "Anti-legionella function",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -415,7 +439,7 @@
         }
       },
       "setting_044": {
-        "name": "Enable holiday mode",
+        "name": "Holiday mode",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -432,7 +456,7 @@
         }
       },
       "setting_047": {
-        "name": "Enable additional heat source for heating",
+        "name": "Additional heat source for heating",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -449,7 +473,7 @@
         }
       },
       "setting_049": {
-        "name": "Enable additional heat source for hot water",
+        "name": "Additional heat source for hot water",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -466,7 +490,7 @@
         }
       },
       "setting_053": {
-        "name": "Enable emergency operation",
+        "name": "Emergency operation",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -483,7 +507,7 @@
         }
       },
       "setting_056": {
-        "name": "Enable alternating priority",
+        "name": "Alternating priority",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -500,7 +524,7 @@
         }
       },
       "setting_061": {
-        "name": "Enable alternating priority with HWTBH",
+        "name": "Alternating priority with HWTBH",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -517,7 +541,7 @@
         }
       },
       "setting_062": {
-        "name": "Enable domestic hot-water tank function",
+        "name": "Domestic hot-water tank function",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -534,7 +558,7 @@
         }
       },
       "setting_063": {
-        "name": "Enable reheating",
+        "name": "Reheating",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -551,7 +575,7 @@
         }
       },
       "setting_066": {
-        "name": "Enable heating/cooling circuit 2",
+        "name": "Heating/cooling circuit 2",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -568,7 +592,7 @@
         }
       },
       "setting_068": {
-        "name": "Enable circuit 2 heating curve",
+        "name": "Circuit 2 heating curve",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -585,7 +609,7 @@
         }
       },
       "setting_077": {
-        "name": "Enable reduced heating target",
+        "name": "Reduced heating target",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -602,7 +626,7 @@
         }
       },
       "setting_079": {
-        "name": "Enable sleep function",
+        "name": "Sleep function",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -619,7 +643,7 @@
         }
       },
       "setting_082": {
-        "name": "Enable utility lockout",
+        "name": "Utility lockout function",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -687,7 +711,7 @@
         }
       },
       "setting_092": {
-        "name": "Enable mixing valve 1",
+        "name": "Mixing valve 1",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -704,7 +728,7 @@
         }
       },
       "setting_093": {
-        "name": "Enable mixing valve 2",
+        "name": "Mixing valve 2",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -823,7 +847,7 @@
         }
       },
       "setting_100": {
-        "name": "Enable screed drying",
+        "name": "Screed drying",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -857,7 +881,7 @@
         }
       },
       "setting_123": {
-        "name": "Enable domestic hot-water ECO",
+        "name": "Domestic hot-water ECO",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -874,7 +898,7 @@
         }
       },
       "setting_125": {
-        "name": "Enable heating ECO",
+        "name": "Heating ECO",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -925,7 +949,7 @@
         }
       },
       "setting_133": {
-        "name": "Lock out auxiliary heater AH",
+        "name": "Auxiliary heater AH lockout",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -942,7 +966,7 @@
         }
       },
       "setting_134": {
-        "name": "Lock out auxiliary heater AH by outdoor temperature",
+        "name": "Outdoor-temperature-dependent auxiliary heater AH lockout",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
@@ -959,7 +983,7 @@
         }
       },
       "upstream_enabled": {
-        "name": "Forward to MyHeatPump"
+        "name": "MyHeatPump forwarding"
       }
     },
     "select": {
@@ -990,7 +1014,7 @@
       "setting_008": {
         "name": "Heating and cooling enable condition",
         "state": {
-          "option_0": "Disabled",
+          "option_0": "Off",
           "option_1": "Outdoor temperature",
           "option_2": "External signal",
           "option_3": "External signal and outdoor temperature"
@@ -1076,7 +1100,7 @@
       "setting_085": {
         "name": "Display backlight",
         "state": {
-          "option_0": "Continuous",
+          "option_0": "Always on",
           "option_1": "3 min",
           "option_2": "5 min",
           "option_3": "10 min"
@@ -1143,7 +1167,7 @@
         "name": "Pump P0 operating mode",
         "state": {
           "option_0": "Interval mode",
-          "option_1": "Continuous",
+          "option_1": "Continuous operation",
           "option_2": "Off with compressor"
         },
         "state_attributes": {
@@ -1164,7 +1188,7 @@
       "setting_118": {
         "name": "Operating mode signal output",
         "state": {
-          "option_0": "No output",
+          "option_0": "Off",
           "option_1": "Heating",
           "option_2": "Cooling"
         },
@@ -2478,12 +2502,12 @@
         "title": "HEIKO W600",
         "description": "Change transport and freshness settings. Saving reloads this integration. Entity IDs, device associations and the cloud forwarding selection are preserved.",
         "data": {
-          "listen_host": "TCP listener host",
-          "listen_port": "TCP listener port",
-          "upstream_host": "Manufacturer upstream host",
-          "upstream_port": "Manufacturer upstream port",
-          "stale_seconds": "Telemetry stale timeout (seconds)",
-          "upstream_enabled": "Forward to manufacturer cloud"
+          "listen_host": "Local listener address",
+          "listen_port": "Local TCP port",
+          "upstream_host": "MyHeatPump server",
+          "upstream_port": "MyHeatPump TCP port",
+          "stale_seconds": "Maximum data age (seconds)",
+          "upstream_enabled": "MyHeatPump forwarding"
         }
       }
     },
@@ -2494,7 +2518,7 @@
       "invalid_upstream_host": "Enter an IP address or valid host name for the upstream.",
       "invalid_upstream_port": "Enter a TCP port from 1 to 65535 for the upstream.",
       "invalid_stale_seconds": "Enter a whole number of seconds from 30 to 3600.",
-      "invalid_upstream_enabled": "A boolean switch value is required."
+      "invalid_upstream_enabled": "Choose On or Off."
     }
   },
   "services": {
@@ -2523,7 +2547,7 @@
       "message": "This parameter is read-only."
     },
     "boolean_required": {
-      "message": "A boolean switch value is required."
+      "message": "Choose On or Off."
     },
     "numeric_required": {
       "message": "A numeric value is required."

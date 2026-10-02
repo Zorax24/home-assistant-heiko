@@ -18,6 +18,20 @@ ROOT=Path(__file__).resolve().parents[1]
 COMPONENT=ROOT/'custom_components/heiko_w600'
 
 class PublicationTests(unittest.TestCase):
+    def test_binary_status_labels_are_plain_on_off_in_both_languages(self):
+        from heiko_w600.binary_sensor import BINARY_SENSORS
+        for language, on, off in (("de", "Ein", "Aus"), ("en", "On", "Off")):
+            translated=json.loads((COMPONENT/f"translations/{language}.json").read_text(encoding="utf-8"))
+            for description in BINARY_SENSORS:
+                self.assertEqual(translated['entity']['binary_sensor'][description.translation_key]['state'], {'on':on,'off':off})
+
+    def test_dashboard_catalog_names_match_entity_translations(self):
+        dashboard=json.loads((COMPONENT/'dashboard_strings.json').read_text(encoding="utf-8"))
+        for language in ('en','de'):
+            translated=json.loads((COMPONENT/f"translations/{language}.json").read_text(encoding="utf-8"))
+            names={key:value['name'] for entries in translated['entity'].values() for key,value in entries.items()}
+            self.assertTrue(all(names[key]==value for key,value in dashboard[language]['names'].items()))
+
     def test_translation_key_and_enum_parity_for_complete_catalog(self):
         from tools.check_project import translation_keys
         en=json.loads((COMPONENT/'translations/en.json').read_text(encoding="utf-8"))

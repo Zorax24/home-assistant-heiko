@@ -47,8 +47,26 @@ async def main():
             entities = [item for item in er.async_get(hass).entities.values() if item.config_entry_id == entry.entry_id]
             assert len(entities) == 176, len(entities)
             cloud_entity = next(item for item in entities if item.unique_id.endswith("_upstream_enabled"))
-            assert cloud_entity.original_name == "Forward to MyHeatPump", cloud_entity.original_name
+            assert cloud_entity.original_name == "MyHeatPump forwarding", cloud_entity.original_name
             assert hass.states.get(cloud_entity.entity_id).state == "off"
+            # Display wording must not change raw on/off or missing-data semantics.
+            from datetime import datetime, timezone
+            binary = [item for item in entities if item.domain == "binary_sensor"]
+            assert len(binary) == 6
+            coordinator.connected = True
+            coordinator._last_realtime = datetime.now(timezone.utc)
+            for value, expected in ((0, "off"), (1, "on")):
+                coordinator._realtime.update({key:float(value) for key in ("par15","par32","par33","par34","par35")})
+                coordinator._realtime["par20"] = 30.0 if value else 0.0
+                coordinator._publish()
+                await hass.async_block_till_done()
+                for item in binary:
+                    assert hass.states.get(item.entity_id).state == expected, item.entity_id
+            coordinator._last_realtime = None
+            coordinator._publish()
+            await hass.async_block_till_done()
+            assert all(hass.states.get(item.entity_id).state == "unavailable" for item in binary)
+            coordinator.connected = False
             # Validate aliases through the real HA service wrapper, with a synthetic
             # in-memory write recorder replacing all physical write transport.
             from datetime import datetime, timezone
@@ -78,6 +96,11 @@ async def main():
                 for category in ("entity", "config", "options", "services", "exceptions"):
                     translated = await async_get_translations(hass, language, category, {DOMAIN})
                     assert translated, (language, category)
+                    if category == "entity":
+                        for item in binary:
+                            key = f"component.{DOMAIN}.entity.binary_sensor.{item.translation_key}.state."
+                            assert translated[key+"on"] == ("Ein" if language == "de" else "On")
+                            assert translated[key+"off"] == ("Aus" if language == "de" else "Off")
                 dashboard = build_dashboard(entry.entry_id, entities, language)
                 assert len(dashboard["views"]) == 3
                 rows=[row for card in dashboard["views"][1]["cards"] for row in card.get("entities", [])]

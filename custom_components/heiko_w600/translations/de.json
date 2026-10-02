@@ -6,12 +6,12 @@
         "title": "HEIKO W600",
         "description": "Richtet W600-Listener, Upstream-Weiterleitung und schreibbare Katalogparameter einschließlich Serviceeinstellungen ein. Schreiben erfordert eine aktive W600-Verbindung und eine frische CMD02-Rückmeldung. Host und Ports sind Referenzwerte; die Endpunkte werden beim Einrichten nicht getestet. Die Herstellerweiterleitung ist zur Kompatibilität standardmäßig aktiv; bewusst auswählen. Service- und Schutzparameter erfordern Fachkenntnisse.",
         "data": {
-          "listen_host": "TCP-Listener-Adresse",
-          "listen_port": "TCP-Listener-Port",
-          "upstream_host": "Hersteller-Upstream-Host",
-          "upstream_port": "Hersteller-Upstream-Port",
-          "stale_seconds": "Timeout für veraltete Telemetrie (Sekunden)",
-          "upstream_enabled": "Weiterleitung zur Herstellercloud"
+          "listen_host": "Lokale Empfangsadresse",
+          "listen_port": "Lokaler TCP-Port",
+          "upstream_host": "MyHeatPump-Server",
+          "upstream_port": "MyHeatPump-TCP-Port",
+          "stale_seconds": "Maximales Datenalter (Sekunden)",
+          "upstream_enabled": "MyHeatPump-Weiterleitung"
         }
       }
     },
@@ -22,7 +22,7 @@
       "invalid_upstream_host": "Gib eine IP-Adresse oder einen gültigen Hostnamen für den Upstream ein.",
       "invalid_upstream_port": "Gib für den Upstream einen TCP-Port von 1 bis 65535 ein.",
       "invalid_stale_seconds": "Gib eine ganze Sekundenzahl von 30 bis 3600 ein.",
-      "invalid_upstream_enabled": "Ein boolescher Schaltwert ist erforderlich."
+      "invalid_upstream_enabled": "Bitte Ein oder Aus wählen."
     },
     "abort": {
       "already_configured": "Pro Home-Assistant-Instanz wird nur ein HEIKO-W600-Konfigurationseintrag unterstützt."
@@ -180,8 +180,8 @@
       "connection_state": {
         "name": "Verbindungszustand",
         "state": {
-          "stopped": "Listener gestoppt",
-          "waiting": "Warte auf Wärmepumpe",
+          "stopped": "Datenempfang aus",
+          "waiting": "Warte auf W600-Verbindung",
           "measurements_stale": "Verbunden, Messwerte fehlen oder sind veraltet",
           "settings_stale": "Messwerte aktuell, Einstellungen fehlen oder sind veraltet",
           "fresh": "Messwerte und Einstellungen aktuell"
@@ -214,13 +214,13 @@
         "name": "Daten zur Wärmepumpe"
       },
       "frames_received": {
-        "name": "CRC-geprüfte Telegramme"
+        "name": "Gültige Protokolltelegramme"
       },
       "last_write_result": {
-        "name": "Letzter Schreibauftrag",
+        "name": "Letzte Einstellungsänderung",
         "state": {
-          "none": "Noch kein Schreibauftrag",
-          "confirmed": "In CMD02 bestätigt",
+          "none": "Noch keine Änderung angefordert",
+          "confirmed": "Bestätigt",
           "unconfirmed": "Nicht bestätigt; Ergebnis unbekannt",
           "aborted": "Abgebrochen; aktuellen Wert prüfen"
         },
@@ -242,27 +242,51 @@
     },
     "binary_sensor": {
       "par15": {
-        "name": "Durchflussschalter aktiv"
+        "name": "Durchflussschalter",
+        "state": {
+          "on": "Ein",
+          "off": "Aus"
+        }
       },
       "par32": {
-        "name": "Abtauung aktiv"
+        "name": "Abtauung",
+        "state": {
+          "on": "Ein",
+          "off": "Aus"
+        }
       },
       "par33": {
-        "name": "Pumpe P0 in Betrieb"
+        "name": "Pumpe P0",
+        "state": {
+          "on": "Ein",
+          "off": "Aus"
+        }
       },
       "par34": {
-        "name": "Pumpe P1 in Betrieb"
+        "name": "Pumpe P1",
+        "state": {
+          "on": "Ein",
+          "off": "Aus"
+        }
       },
       "par35": {
-        "name": "Pumpe P2 in Betrieb"
+        "name": "Pumpe P2",
+        "state": {
+          "on": "Ein",
+          "off": "Aus"
+        }
       },
       "compressor_running": {
-        "name": "Verdichter in Betrieb"
+        "name": "Verdichter",
+        "state": {
+          "on": "Ein",
+          "off": "Aus"
+        }
       }
     },
     "switch": {
       "setting_000": {
-        "name": "Ein/Aus",
+        "name": "Wärmepumpe",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -279,7 +303,7 @@
         }
       },
       "setting_005": {
-        "name": "Warmwasser freigeben",
+        "name": "Warmwasserfreigabe",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -296,7 +320,7 @@
         }
       },
       "setting_006": {
-        "name": "Heizen freigeben",
+        "name": "Heizfreigabe",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -313,7 +337,7 @@
         }
       },
       "setting_007": {
-        "name": "Kühlen freigeben",
+        "name": "Kühlfreigabe",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -330,7 +354,7 @@
         }
       },
       "setting_009": {
-        "name": "Grundlegende Betriebsmodi aktivieren",
+        "name": "Grundlegende Betriebsmodi",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -364,7 +388,7 @@
         }
       },
       "setting_023": {
-        "name": "Heizkurve aktivieren",
+        "name": "Heizkurve",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -398,7 +422,7 @@
         }
       },
       "setting_040": {
-        "name": "Anti-Legionellen-Funktion aktivieren",
+        "name": "Anti-Legionellen-Funktion",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -415,7 +439,7 @@
         }
       },
       "setting_044": {
-        "name": "Ferienmodus aktivieren",
+        "name": "Ferienmodus",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -432,7 +456,7 @@
         }
       },
       "setting_047": {
-        "name": "Zusätzliche Wärmequelle für Heizen aktivieren",
+        "name": "Zusätzliche Wärmequelle für Heizen",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -449,7 +473,7 @@
         }
       },
       "setting_049": {
-        "name": "Zusätzliche Wärmequelle für Warmwasser aktivieren",
+        "name": "Zusätzliche Wärmequelle für Warmwasser",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -466,7 +490,7 @@
         }
       },
       "setting_053": {
-        "name": "Notbetrieb aktivieren",
+        "name": "Notbetrieb",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -483,7 +507,7 @@
         }
       },
       "setting_056": {
-        "name": "Wechselnde Priorität aktivieren",
+        "name": "Wechselnde Priorität",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -500,7 +524,7 @@
         }
       },
       "setting_061": {
-        "name": "Wechselnde Priorität mit HWTBH aktivieren",
+        "name": "Wechselnde Priorität mit HWTBH",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -517,7 +541,7 @@
         }
       },
       "setting_062": {
-        "name": "Warmwasserspeicher-Funktion aktivieren",
+        "name": "Warmwasserspeicher-Funktion",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -534,7 +558,7 @@
         }
       },
       "setting_063": {
-        "name": "Nachheizfunktion aktivieren",
+        "name": "Nachheizfunktion",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -551,7 +575,7 @@
         }
       },
       "setting_066": {
-        "name": "Heiz-/Kühlkreis 2 aktivieren",
+        "name": "Heiz-/Kühlkreis 2",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -568,7 +592,7 @@
         }
       },
       "setting_068": {
-        "name": "Heizkurve Kreis 2 aktivieren",
+        "name": "Heizkurve Kreis 2",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -585,7 +609,7 @@
         }
       },
       "setting_077": {
-        "name": "Reduzierten Heiz-Sollwert aktivieren",
+        "name": "Reduzierten Heiz-Sollwert",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -602,7 +626,7 @@
         }
       },
       "setting_079": {
-        "name": "Schlaffunktion aktivieren",
+        "name": "Schlaffunktion",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -619,7 +643,7 @@
         }
       },
       "setting_082": {
-        "name": "EVU-Sperre aktivieren",
+        "name": "EVU-Sperrfunktion",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -687,7 +711,7 @@
         }
       },
       "setting_092": {
-        "name": "Mischventil 1 aktivieren",
+        "name": "Mischventil 1",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -704,7 +728,7 @@
         }
       },
       "setting_093": {
-        "name": "Mischventil 2 aktivieren",
+        "name": "Mischventil 2",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -823,7 +847,7 @@
         }
       },
       "setting_100": {
-        "name": "Estrich-Austrocknung aktivieren",
+        "name": "Estrich-Austrocknung",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -857,7 +881,7 @@
         }
       },
       "setting_123": {
-        "name": "Warmwasser-ECO-Funktion aktivieren",
+        "name": "Warmwasser-ECO-Funktion",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -874,7 +898,7 @@
         }
       },
       "setting_125": {
-        "name": "Heizungs-ECO-Funktion aktivieren",
+        "name": "Heizungs-ECO-Funktion",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -925,7 +949,7 @@
         }
       },
       "setting_133": {
-        "name": "Zusatzheizung AH sperren",
+        "name": "Sperre der Zusatzheizung AH",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -942,7 +966,7 @@
         }
       },
       "setting_134": {
-        "name": "Zusatzheizung AH abhängig von der Außentemperatur sperren",
+        "name": "Außentemperaturabhängige Sperre der Zusatzheizung AH",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -959,12 +983,12 @@
         }
       },
       "upstream_enabled": {
-        "name": "Weiterleitung an MyHeatPump"
+        "name": "MyHeatPump-Weiterleitung"
       }
     },
     "select": {
       "setting_003": {
-        "name": "Arbeitsmodus",
+        "name": "Betriebsmodus",
         "state": {
           "option_0": "Standby",
           "option_1": "Heizen",
@@ -990,7 +1014,7 @@
       "setting_008": {
         "name": "Freigabe für Heizen und Kühlen",
         "state": {
-          "option_0": "Deaktiviert",
+          "option_0": "Aus",
           "option_1": "Außentemperatur",
           "option_2": "Externes Signal",
           "option_3": "Externes Signal und Außentemperatur"
@@ -1076,7 +1100,7 @@
       "setting_085": {
         "name": "Displaybeleuchtung",
         "state": {
-          "option_0": "Ständig",
+          "option_0": "Immer ein",
           "option_1": "3 min.",
           "option_2": "5 min.",
           "option_3": "10 min."
@@ -1143,7 +1167,7 @@
         "name": "Betriebsweise P0",
         "state": {
           "option_0": "Intervallfunktion",
-          "option_1": "Ständig",
+          "option_1": "Dauerbetrieb",
           "option_2": "Aus zusammen mit Verdichter"
         },
         "state_attributes": {
@@ -1162,9 +1186,9 @@
         }
       },
       "setting_118": {
-        "name": "Arbeitsmodus-Signalausgang",
+        "name": "Betriebsmodus-Signalausgang",
         "state": {
-          "option_0": "Kein Ausgang",
+          "option_0": "Aus",
           "option_1": "Heizen",
           "option_2": "Kühlen"
         },
@@ -2478,12 +2502,12 @@
         "title": "HEIKO W600",
         "description": "Verbindung und Datenalter ändern. Beim Speichern wird die Integration neu geladen. Entitäten und Zuordnungen bleiben erhalten.",
         "data": {
-          "listen_host": "TCP-Listener-Adresse",
-          "listen_port": "TCP-Listener-Port",
-          "upstream_host": "Hersteller-Upstream-Host",
-          "upstream_port": "Hersteller-Upstream-Port",
-          "stale_seconds": "Timeout für veraltete Telemetrie (Sekunden)",
-          "upstream_enabled": "Weiterleitung zur Herstellercloud"
+          "listen_host": "Lokale Empfangsadresse",
+          "listen_port": "Lokaler TCP-Port",
+          "upstream_host": "MyHeatPump-Server",
+          "upstream_port": "MyHeatPump-TCP-Port",
+          "stale_seconds": "Maximales Datenalter (Sekunden)",
+          "upstream_enabled": "MyHeatPump-Weiterleitung"
         }
       }
     },
@@ -2494,7 +2518,7 @@
       "invalid_upstream_host": "Gib eine IP-Adresse oder einen gültigen Hostnamen für den Upstream ein.",
       "invalid_upstream_port": "Gib für den Upstream einen TCP-Port von 1 bis 65535 ein.",
       "invalid_stale_seconds": "Gib eine ganze Sekundenzahl von 30 bis 3600 ein.",
-      "invalid_upstream_enabled": "Ein boolescher Schaltwert ist erforderlich."
+      "invalid_upstream_enabled": "Bitte Ein oder Aus wählen."
     }
   },
   "services": {
@@ -2523,7 +2547,7 @@
       "message": "Dieser Parameter ist nur lesbar."
     },
     "boolean_required": {
-      "message": "Ein boolescher Schaltwert ist erforderlich."
+      "message": "Bitte Ein oder Aus wählen."
     },
     "numeric_required": {
       "message": "Ein Zahlenwert ist erforderlich."

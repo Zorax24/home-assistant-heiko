@@ -6,7 +6,7 @@
 
 Eine **Custom Integration**, kein Supervisor-Add-on beziehungsweise App. Sie empfängt W600-TCP-Daten direkt in Home Assistant, stellt Messwerte und den vollständigen Referenz-Parameterkatalog bereit und kann die Verbindung optional an MyHeatPump weiterleiten. Dafür sind kein eigener Serverdienst und keine Anmeldung mit einem Cloud-Konto nötig.
 
-**Stand: 0.5.1, experimentell.** Kommunikation und Schreibvorgänge dieser Version sind **noch nicht an einer echten Wärmepumpe bestätigt**. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
+**Stand: 0.5.2, experimentell.** Kommunikation und Schreibvorgänge dieser Version sind **noch nicht an einer echten Wärmepumpe bestätigt**. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
 
 ## Installation
 
@@ -29,7 +29,7 @@ Kein Supervisor-Add-on-Repository hinzufügen. Für den benutzerdefinierten Weg 
 
 Vorher Home Assistant sichern. Bei einem Update zusätzlich den bisherigen Integrationsordner aufbewahren.
 
-1. [Installations-ZIP herunterladen](https://github.com/Zorax24/home-assistant-heiko/releases/download/v0.5.1/heiko_w600-ha-0.5.1.zip) und entpacken.
+1. [Installations-ZIP herunterladen](https://github.com/Zorax24/home-assistant-heiko/releases/download/v0.5.2/heiko_w600-ha-0.5.2.zip) und entpacken.
 2. Den enthaltenen Ordner `custom_components/heiko_w600` nach `/config/custom_components/` auf deinem Home-Assistant-Rechner kopieren.
 3. Home Assistant neu starten. Dann [HEIKO W600 hinzufügen](https://my.home-assistant.io/redirect/config_flow_start/?domain=heiko_w600) anklicken oder **Einstellungen → Geräte & Dienste → Integration hinzufügen** verwenden.
 
@@ -56,6 +56,8 @@ Voraussetzungen: Home Assistant ab 2026.9.4 (geprüft mit 2026.9.4), ein W600 mi
 
 Betriebsmodi und Auswahltexte stammen aus dem Katalog. Tatsächliche Verfügbarkeit hängt vom Regler ab. Die Integration ist kein `climate`-Raumthermostat und berechnet weder COP noch Energieerträge.
 
+Pumpen und Verdichter zeigen **Ein/Aus**. **Nicht verfügbar** bedeutet, dass kein aktueller gültiger Messwert vorliegt, nicht dass das Gerät aus ist. Funktions- und Freigabeschalter beschreiben die Erlaubnis zum Betrieb; sie belegen keinen laufenden Heizbetrieb und keine laufende Pumpe. Bestehende Dashboard-Texte sind statisch: Nach einem Update erneut exportieren, um die neuen Namen zu übernehmen. Eigene Namen bleiben erhalten.
+
 ## Eigenes Dashboard erstellen
 
 1. **Einstellungen → Werkzeuge → Aktionen** öffnen; ältere HA-Versionen nennen den Bereich Entwicklerwerkzeuge.
@@ -75,7 +77,7 @@ Der Export verwendet deine registrierten Entitäten einschließlich umbenannter 
 
 ## Schalter für die Herstellercloud
 
-**Weiterleitung an MyHeatPump** erscheint im Dashboard und bei den Konfigurationsentitäten der Integration. Der Schalter ist bereits ohne W600-Verbindung verfügbar. Seine Auswahl bleibt über Neustarts und Optionsänderungen erhalten.
+**MyHeatPump-Weiterleitung** erscheint im Dashboard und bei den Konfigurationsentitäten der Integration. Der Schalter ist bereits ohne W600-Verbindung verfügbar. Seine Auswahl bleibt über Neustarts und Optionsänderungen erhalten.
 
 - **Ein:** Der vollständige TCP-Datenstrom des W600 wird zum konfigurierten Herstellerziel weitergeleitet; Herstellerantworten und -befehle gehen zurück zum Gerät. Enthalten sein können Protokoll-Gerätekennungen, Messwerte, Betriebszustände und Einstellungen. Herstellerbefehle können die Wärmepumpe verändern. Die Integration fügt keine Konto-Zugangsdaten hinzu und filtert den Rohdatenstrom nicht nach einzelnen Feldern. Sie verschlüsselt den Referenz-TCP-Transport nicht.
 - **Aus:** Keine Herstellerverbindung; eine vorhandene Verbindung wird geschlossen. Gültige lokale CMD01-/CMD02-Rahmen erhalten lokale CMD03-/CMD04-Bestätigungen. Lokale Messwerte, Leseanfragen und Schreiben mit aktueller Rücklesebestätigung bleiben implementiert. Die Live-Fernfunktionen von MyHeatPump erhalten diesen Datenstrom nicht mehr; beim Hersteller bereits gespeicherte Daten werden nicht gelöscht. Das tatsächliche Geräteverhalten dieses Modus ist für diese Version noch nicht bestätigt.

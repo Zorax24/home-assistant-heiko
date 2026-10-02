@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
 
 # Keep this value in sync with manifest.json.
-_INTEGRATION_VERSION = "0.5.1"
+_INTEGRATION_VERSION = "0.5.2"
 _MAX_FIELD_COUNT = 1000
 
 

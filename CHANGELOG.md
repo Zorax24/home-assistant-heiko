@@ -1,6 +1,16 @@
 # Changelog
 
-## Unreleased
+## 0.5.2
+
+- Review all English/German entity names, options, connection/write-result states, setup fields and dashboard labels. Pump/compressor binary status displays On/Off (Ein/Aus) through integration-specific state translations instead of the RUNNING device-class wording.
+- Keep device classes, raw states, unique IDs, configuration, protocol/catalog definitions and availability unchanged. Missing or stale telemetry remains unavailable, never Off. Standby, utility lockout and emergency operation retain their distinct meaning.
+- Name enable switches as functions or permissions, not proof of actual operation. Clarify local reception versus the manufacturer connection, and label write readback as Confirmed rather than an unexplained CMD02 state.
+- Keep dashboard catalog labels consistent with entity translations. Existing exported dashboards contain static names: regenerate and manually replace their YAML if you want the revised labels. Explicit user names remain unchanged.
+- Add translation/catalog consistency tests and actual HA smoke checks for all six binary sensors: on, off, unavailable, and both languages. No physical-device writes or production changes.
+
+Deutsch: Pumpen und Verdichter zeigen Ein/Aus. Fehlende Daten bleiben Nicht verfügbar. Schalter für Funktionen und Freigaben, Verbindungstexte, Schreibbestätigung und Dashboard-Bezeichnungen sind überarbeitet. Kennungen, Zustandswerte, Geräteklassen und Protokoll bleiben gleich. Bestehende Dashboard-Texte bei Bedarf neu exportieren; eigene Namen bleiben erhalten.
+
+### Documentation preparation since 0.5.1
 
 - Separate installation and connection setup. Add a prepared HACS custom-repository shortcut and four-step instructions, explicitly conditional on public availability and installation validation; shorten the working ZIP method to three steps in both languages.
 

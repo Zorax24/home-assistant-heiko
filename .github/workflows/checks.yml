@@ -21,11 +21,11 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: python tools/check_project.py
       - run: python build_package.py
-      - run: python tools/check_project.py --archive dist/heiko_w600-ha-0.5.1.zip
+      - run: python tools/check_project.py --archive dist/heiko_w600-ha-0.5.2.zip
       - run: |
-          cp dist/heiko_w600-ha-0.5.1.zip /tmp/heiko-first.zip
+          cp dist/heiko_w600-ha-0.5.2.zip /tmp/heiko-first.zip
           python build_package.py
-          cmp /tmp/heiko-first.zip dist/heiko_w600-ha-0.5.1.zip
+          cmp /tmp/heiko-first.zip dist/heiko_w600-ha-0.5.2.zip
   home-assistant:
     runs-on: ubuntu-latest
     steps:

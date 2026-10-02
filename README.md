@@ -6,7 +6,7 @@
 
 A **custom integration**, not a Supervisor app/add-on. It receives W600 TCP data in Home Assistant, exposes measurements and the complete reference settings catalog, and can optionally relay the connection to MyHeatPump. No separate server process or cloud account login is required.
 
-**Status: 0.5.1, experimental.** Hardware communication and writes with this release have **not** been confirmed on a physical heat pump. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
+**Status: 0.5.2, experimental.** Hardware communication and writes with this release have **not** been confirmed on a physical heat pump. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
 
 ## Installation
 
@@ -29,7 +29,7 @@ No Supervisor add-on repository is needed. A HACS listing is not required for th
 
 Make a Home Assistant backup first. If updating, keep the previous component folder.
 
-1. [Download the installation ZIP](https://github.com/Zorax24/home-assistant-heiko/releases/download/v0.5.1/heiko_w600-ha-0.5.1.zip) and extract it.
+1. [Download the installation ZIP](https://github.com/Zorax24/home-assistant-heiko/releases/download/v0.5.2/heiko_w600-ha-0.5.2.zip) and extract it.
 2. Copy its `custom_components/heiko_w600` folder into `/config/custom_components/` on your Home Assistant host.
 3. Restart Home Assistant, then click [Add HEIKO W600](https://my.home-assistant.io/redirect/config_flow_start/?domain=heiko_w600) or use **Settings → Devices & services → Add integration**.
 
@@ -56,6 +56,8 @@ Requirements: Home Assistant 2026.9.4 or newer (tested with 2026.9.4), a W600 us
 
 The supported operating modes and the choice labels come from the catalog. Actual availability depends on the controller. This is not a `climate` thermostat integration and does not calculate COP or energy totals.
 
+Pump/compressor status uses **On/Off**. **Unavailable** means there is no fresh valid reading, not that the device is off. Function/enable switches describe permission to operate; they do not prove that heating or a pump is currently running. Existing exported dashboard labels are static; regenerate the export after an update to apply revised names. Explicit custom names are preserved.
+
 ## Create your dashboard
 
 1. Open **Settings → Tools → Actions** (called Developer tools on some HA versions).
@@ -75,7 +77,7 @@ The export reads your own entity registry, including renamed IDs. It skips disab
 
 ## Manufacturer cloud switch
 
-**Forward to MyHeatPump** appears in the dashboard and integration configuration entities. It is available even before the W600 connects, and the chosen state persists across restarts and option changes.
+**MyHeatPump forwarding** appears in the dashboard and integration configuration entities. It is available even before the W600 connects, and the chosen state persists across restarts and option changes.
 
 - **On:** relay the full W600 TCP byte stream to the configured manufacturer endpoint, and relay manufacturer responses and commands back to the device. This can include protocol device identifiers, measurements, operating states and settings. Manufacturer-originated commands may change the pump. The integration adds no account credentials and does not filter the raw stream by field. The reference TCP transport is not encrypted by this integration.
 - **Off:** close/prevent the manufacturer socket. Valid local CMD01/CMD02 frames get local CMD03/CMD04 acknowledgements. Local readings, read requests and writes with fresh readback remain implemented. MyHeatPump's live remote functions stop receiving this stream; data already held by the manufacturer is not deleted. Physical behavior in this mode remains unverified for this release.

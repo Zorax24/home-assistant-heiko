@@ -1,7 +1,7 @@
 {
-  "version": "0.5.1",
+  "version": "0.5.2",
   "source_baseline": "complete 0.4.0; source files verified against its installation archive",
-  "unit_loopback_tests": 60,
+  "unit_loopback_tests": 62,
   "local_real_ha_core": "2026.9.4",
   "real_ha_registered_entities": 176,
   "translations": [
@@ -17,7 +17,8 @@
     "persistent cloud option without device",
     "loopback port conflict",
     "unload",
-    "legacy select alias via actual HA service with synthetic write recorder"
+    "legacy select alias via actual HA service with synthetic write recorder",
+    "all six binary sensors: on/off/unavailable and DE/EN state translations"
   ],
   "secret_scan": {
     "tool": "Gitleaks 8.30.1",
@@ -25,17 +26,10 @@
     "method": "local only; redacted report excluded from repository"
   },
   "privacy_review": "allowlist export, custom path/address/credential checks and manual source/document/image inspection",
-  "fresh_checkout": "passed: 60 unit/loopback tests, real HA Core smoke, package and privacy checks",
+  "fresh_checkout": "GitHub CI runs the unit, real HA, package and privacy gates from fresh checkouts; see commit-specific Actions results",
   "github_ci": {
-    "status": "success",
-    "run_id": 36685936643,
-    "tested_sha": "6b76053271209fcc1315f306975c263afa04b86f",
-    "url": "https://github.com/Zorax24/home-assistant-heiko/actions/runs/36685936643",
-    "jobs": [
-      "home-assistant",
-      "offline",
-      "hassfest"
-    ]
+    "verification": "See successful checks for the release tag and its commit",
+    "url": "https://github.com/Zorax24/home-assistant-heiko/actions"
   },
   "physical_hardware_test": false,
   "production_changes": false,
@@ -43,8 +37,8 @@
   "brands_submission": false,
   "install_archive": {
     "files": 25,
-    "sha256": "666325f275816908e4929240c1a1c0f7198f31d79abbf7227fc551f101255ee0",
-    "reproducible_from_fresh_checkout": true
+    "sha256": "bccc2397104132a9f292f11da18ecbee33ebba678be238e243cada7eb886215f",
+    "reproducible_from_fresh_checkout": "Checked by release CI"
   },
-  "hassfest": "passed official Home Assistant hassfest GitHub action"
+  "hassfest": "Official Home Assistant hassfest action is required by release CI"
 }
