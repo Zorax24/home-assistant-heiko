@@ -37,7 +37,7 @@
   "brands_submission": false,
   "install_archive": {
     "files": 25,
-    "sha256": "bccc2397104132a9f292f11da18ecbee33ebba678be238e243cada7eb886215f",
+    "sha256": "a5dcd0f6e05775f0a58698a93826c4d85ed86240205d44bd42141e36db977334",
     "reproducible_from_fresh_checkout": "Checked by release CI"
   },
   "hassfest": "Official Home Assistant hassfest action is required by release CI"

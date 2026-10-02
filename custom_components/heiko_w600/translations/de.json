@@ -609,7 +609,7 @@
         }
       },
       "setting_077": {
-        "name": "Reduzierten Heiz-Sollwert",
+        "name": "Reduzierter Heiz-Sollwert",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -660,7 +660,7 @@
         }
       },
       "setting_083": {
-        "name": "Zusatzheizung HBH während der EVU-Sperre",
+        "name": "Zusätzliche Wärmequelle HBH bei EVU-Sperre",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameterindex"
@@ -1208,7 +1208,7 @@
         }
       },
       "setting_119": {
-        "name": "Schaltlogik des Arbeitsmodus-Signalausgangs",
+        "name": "Schaltlogik des Betriebsmodus-Signalausgangs",
         "state": {
           "option_0": "Ruhekontakt (NC)",
           "option_1": "Arbeitskontakt (NO)"

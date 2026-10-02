@@ -660,7 +660,7 @@
         }
       },
       "setting_083": {
-        "name": "HBH auxiliary heater during utility lockout",
+        "name": "Additional heat source HBH during utility lockout",
         "state_attributes": {
           "parameter_index": {
             "name": "Parameter index"
