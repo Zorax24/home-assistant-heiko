@@ -6,7 +6,7 @@
 
 Eine **Custom Integration**, kein Supervisor-Add-on beziehungsweise App. Sie empfängt W600-TCP-Daten direkt in Home Assistant, stellt Messwerte und den vollständigen Referenz-Parameterkatalog bereit und kann die Verbindung optional an MyHeatPump weiterleiten. Dafür sind kein eigener Serverdienst und keine Anmeldung mit einem Cloud-Konto nötig.
 
-**Stand: 0.5.2, experimentell.** Kommunikation und Schreibvorgänge dieser Version sind **noch nicht an einer echten Wärmepumpe bestätigt**. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
+**Stand: 0.5.2, experimentell.** **Echte Kommunikation und einzelne Schreibvorgänge sind an einer HEIKO Thermal 9 mit W600 bestätigt:** aktuelle Messwerte, ein Moduswechsel mit frischer Rücklesebestätigung und eine anschließende Reaktion der Wärmepumpe wurden beobachtet. Das bestätigt die geprüften Funktionen einer Anlage, nicht jeden Parameter oder einen gesonderten Hardwaretest des Pakets 0.5.2. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
 
 ## Installation
 

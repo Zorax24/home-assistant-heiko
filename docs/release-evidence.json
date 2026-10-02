@@ -31,7 +31,7 @@
     "verification": "See successful checks for the release tag and its commit",
     "url": "https://github.com/Zorax24/home-assistant-heiko/actions"
   },
-  "physical_hardware_test": false,
+  "physical_hardware_test": true,
   "production_changes": false,
   "hacs_install": "not validated; default-list inclusion and Brands submission not completed",
   "brands_submission": false,
@@ -40,5 +40,26 @@
     "sha256": "a5dcd0f6e05775f0a58698a93826c4d85ed86240205d44bd42141e36db977334",
     "reproducible_from_fresh_checkout": "Checked by release CI"
   },
-  "hassfest": "Official Home Assistant hassfest action is required by release CI"
+  "hassfest": "Official Home Assistant hassfest action is required by release CI",
+  "physical_hardware_evidence": {
+    "date": "2026-10-02",
+    "device": "HEIKO Thermal 9 with W600",
+    "scope": [
+      "fresh measurements and settings",
+      "operating-mode write confirmed by fresh CMD02 readback",
+      "display-backlight restoration confirmed by readback",
+      "controller response during physical water draw observed in recorded telemetry"
+    ],
+    "installed_integration_version": "not recorded in test export",
+    "release_0_5_2_archive_hardware_acceptance": "not separately established",
+    "unconfirmed": [
+      "all catalog writes",
+      "other controllers and firmware",
+      "physical valve position",
+      "sustained hot-water delivery",
+      "immediate auxiliary-heater operation",
+      "cloud-disabled hardware operation"
+    ],
+    "source": "Reviewed local live-test report, final parameter comparison and Home Assistant history; private exports excluded"
+  }
 }

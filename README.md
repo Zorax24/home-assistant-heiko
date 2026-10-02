@@ -6,7 +6,7 @@
 
 A **custom integration**, not a Supervisor app/add-on. It receives W600 TCP data in Home Assistant, exposes measurements and the complete reference settings catalog, and can optionally relay the connection to MyHeatPump. No separate server process or cloud account login is required.
 
-**Status: 0.5.2, experimental.** Hardware communication and writes with this release have **not** been confirmed on a physical heat pump. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
+**Status: 0.5.2, experimental.** **Physical communication and selected writes have been confirmed on a HEIKO Thermal 9 with W600:** live measurements, a mode change with fresh settings readback, and a subsequent heat-pump response were observed. This confirms the tested functions on one installation; it is not acceptance of every parameter or a separate hardware test of the 0.5.2 package. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
 
 ## Installation
 
