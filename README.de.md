@@ -1,4 +1,4 @@
-**Deutsch** · [English](README.md)
+**Deutsch** · [English](README.md) · [Polski](README.pl.md)
 
 # HEIKO W600 für Home Assistant
 
@@ -6,7 +6,7 @@
 
 Eine **Custom Integration**, kein Supervisor-Add-on beziehungsweise App. Sie empfängt W600-TCP-Daten direkt in Home Assistant, stellt Messwerte und den vollständigen Referenz-Parameterkatalog bereit und kann die Verbindung optional an MyHeatPump weiterleiten. Dafür sind kein eigener Serverdienst und keine Anmeldung mit einem Cloud-Konto nötig.
 
-**Stand: 0.6.0, experimentell.** **Echte Kommunikation und einzelne Schreibvorgänge sind an einer HEIKO Thermal 9 mit W600 bestätigt:** aktuelle Messwerte, ein Moduswechsel mit frischer Rücklesebestätigung und eine anschließende Reaktion der Wärmepumpe wurden beobachtet. Das bestätigt die geprüften Funktionen einer Anlage, nicht jeden Parameter oder einen gesonderten Hardwaretest des Pakets 0.6.0. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
+**Release: 0.6.0.** **Echte Kommunikation und einzelne Schreibvorgänge sind an einer HEIKO Thermal 9 mit W600 bestätigt:** aktuelle Messwerte, ein Moduswechsel mit frischer Rücklesebestätigung und eine anschließende Reaktion der Wärmepumpe wurden beobachtet. Das bestätigt die geprüften Funktionen einer Anlage, nicht jeden Parameter oder einen gesonderten Hardwaretest des Pakets 0.6.0. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
 
 ## Sprachen
 
@@ -14,9 +14,9 @@ Deutsch, Englisch und Polnisch sind für Einrichtung, Optionen, Entitätsnamen/A
 
 ## Installation
 
-### Repository in HACS hinzufügen — für öffentliche Verfügbarkeit vorbereitet
+### Repository in HACS hinzufügen
 
-Dieser Weg ist für ein öffentlich erreichbares Repository vorbereitet; er ist **noch nicht als Installationsweg getestet**. HACS muss bereits installiert sein. Private Repositories funktionieren mit HACS auch dann nicht, wenn du auf GitHub darauf zugreifen kannst ([offizielle FAQ](https://hacs.dev/docs/faq/private_repositories/)). Bis diese Voraussetzung und die übrigen HACS-Prüfungen erfüllt sind, die drei ZIP-Schritte unten verwenden.
+Das Repository ist öffentlich und kann als benutzerdefiniertes Repository hinzugefügt werden. HACS muss bereits installiert sein. **Eine Installation über HACS wurde noch nicht getestet.** Das geprüfte Paket und der manuelle ZIP-Weg stehen unten.
 
 [![Repository in HACS öffnen](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Zorax24&repository=home-assistant-heiko&category=integration)
 
@@ -27,7 +27,7 @@ Alternativ von Hand hinzufügen:
 3. **HEIKO W600** öffnen, herunterladen und Home Assistant neu starten.
 4. **Einstellungen → Geräte & Dienste → Integration hinzufügen → HEIKO W600** öffnen.
 
-Kein Supervisor-Add-on-Repository hinzufügen. Für den benutzerdefinierten Weg ist keine HACS-Standardlistenaufnahme nötig. Repository-Verfügbarkeit und eine tatsächliche HACS-Installation müssen trotzdem noch geprüft werden.
+Kein Supervisor-Add-on-Repository hinzufügen. Für den benutzerdefinierten Weg ist keine HACS-Standardlistenaufnahme nötig. Eine tatsächliche HACS-Installation muss trotzdem noch geprüft werden.
 
 ### Jetzt ohne HACS installieren — drei Schritte
 
@@ -66,7 +66,7 @@ Pumpen und Verdichter zeigen **Ein/Aus**. **Nicht verfügbar** bedeutet, dass ke
 
 1. **Einstellungen → Werkzeuge → Aktionen** öffnen; ältere HA-Versionen nennen den Bereich Entwicklerwerkzeuge.
 2. **Wärmepumpen-Dashboard erzeugen** beziehungsweise `heiko_w600.export_dashboard` auswählen.
-3. `de` oder `en` wählen. Ohne Angabe wird die HA-Systemsprache verwendet; weitere Sprachen fallen auf Englisch zurück. Im YAML-Modus:
+3. `de`, `en` oder `pl` wählen. Ohne Angabe wird die HA-Systemsprache verwendet; weitere Sprachen fallen auf Englisch zurück. Im YAML-Modus:
 
    ```yaml
    action: heiko_w600.export_dashboard

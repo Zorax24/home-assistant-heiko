@@ -1,4 +1,4 @@
-[Deutsch](README.de.md) · **English**
+[Deutsch](README.de.md) · **English** · [Polski](README.pl.md)
 
 # HEIKO W600 for Home Assistant
 
@@ -6,7 +6,7 @@
 
 A **custom integration**, not a Supervisor app/add-on. It receives W600 TCP data in Home Assistant, exposes measurements and the complete reference settings catalog, and can optionally relay the connection to MyHeatPump. No separate server process or cloud account login is required.
 
-**Status: 0.6.0, experimental.** **Physical communication and selected writes have been confirmed on a HEIKO Thermal 9 with W600:** live measurements, a mode change with fresh settings readback, and a subsequent heat-pump response were observed. This confirms the tested functions on one installation; it is not acceptance of every parameter or a separate hardware test of the 0.6.0 package. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
+**Release: 0.6.0.** **Physical communication and selected writes have been confirmed on a HEIKO Thermal 9 with W600:** live measurements, a mode change with fresh settings readback, and a subsequent heat-pump response were observed. This confirms the tested functions on one installation; it is not acceptance of every parameter or a separate hardware test of the 0.6.0 package. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
 
 ## Languages
 
@@ -14,9 +14,9 @@ English, German and Polish are included for setup, options, entity labels/choice
 
 ## Installation
 
-### Add the repository in HACS — prepared for public availability
+### Add the repository in HACS
 
-This route is prepared for a publicly accessible repository; it is **not yet an installation-tested release path**. HACS must already be installed. HACS cannot use private repositories, even when you can access them on GitHub ([official FAQ](https://hacs.dev/docs/faq/private_repositories/)). Until that requirement and the remaining HACS checks are met, use the three-step ZIP method below.
+The repository is public and can be added as a custom repository. HACS must already be installed. **Installation through HACS has not yet been tested.** The verified package and manual ZIP route are described below.
 
 [![Open repository in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Zorax24&repository=home-assistant-heiko&category=integration)
 
@@ -27,7 +27,7 @@ Or add it manually:
 3. Open **HEIKO W600**, download it, then restart Home Assistant.
 4. Open **Settings → Devices & services → Add integration → HEIKO W600**.
 
-No Supervisor add-on repository is needed. A HACS listing is not required for the custom-repository route, but repository availability and an actual HACS installation test still need checking.
+No Supervisor add-on repository is needed. A HACS listing is not required for the custom-repository route, but an actual HACS installation test remains outstanding.
 
 ### Install now without HACS — three steps
 
@@ -66,7 +66,7 @@ Pump/compressor status uses **On/Off**. **Unavailable** means there is no fresh 
 
 1. Open **Settings → Tools → Actions** (called Developer tools on some HA versions).
 2. Select **Generate heat-pump dashboard** / `heiko_w600.export_dashboard`.
-3. Choose `en` or `de`, or omit the language to use the HA system language (other languages fall back to English). In YAML mode:
+3. Choose `en`, `de` or `pl`, or omit the language to use the HA system language (other languages fall back to English). In YAML mode:
 
    ```yaml
    action: heiko_w600.export_dashboard
