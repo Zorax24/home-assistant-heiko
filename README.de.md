@@ -6,7 +6,11 @@
 
 Eine **Custom Integration**, kein Supervisor-Add-on beziehungsweise App. Sie empfängt W600-TCP-Daten direkt in Home Assistant, stellt Messwerte und den vollständigen Referenz-Parameterkatalog bereit und kann die Verbindung optional an MyHeatPump weiterleiten. Dafür sind kein eigener Serverdienst und keine Anmeldung mit einem Cloud-Konto nötig.
 
-**Stand: 0.5.2, experimentell.** **Echte Kommunikation und einzelne Schreibvorgänge sind an einer HEIKO Thermal 9 mit W600 bestätigt:** aktuelle Messwerte, ein Moduswechsel mit frischer Rücklesebestätigung und eine anschließende Reaktion der Wärmepumpe wurden beobachtet. Das bestätigt die geprüften Funktionen einer Anlage, nicht jeden Parameter oder einen gesonderten Hardwaretest des Pakets 0.5.2. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
+**Stand: 0.6.0, experimentell.** **Echte Kommunikation und einzelne Schreibvorgänge sind an einer HEIKO Thermal 9 mit W600 bestätigt:** aktuelle Messwerte, ein Moduswechsel mit frischer Rücklesebestätigung und eine anschließende Reaktion der Wärmepumpe wurden beobachtet. Das bestätigt die geprüften Funktionen einer Anlage, nicht jeden Parameter oder einen gesonderten Hardwaretest des Pakets 0.6.0. Der Katalog stammt aus einem HEIKO-ioBroker-Adapter; das ist keine vom Hersteller geprüfte Kompatibilitätsliste. Nicht jeder Regler und jede Firmware muss alle Parameter unterstützen. Siehe [Prüfungen und Grenzen](docs/verification.de.md).
+
+## Sprachen
+
+Deutsch, Englisch und Polnisch sind für Einrichtung, Optionen, Entitätsnamen/Auswahlwerte, Meldungen und Dashboard-Exporte enthalten. Home Assistant verwendet für voreingestellte Entitätsnamen die Systemsprache; eigene Namen bleiben erhalten. Für ein polnisches Dashboard bei `heiko_w600.export_dashboard` die Sprache `pl` wählen. Bestehende Dashboards enthalten feste Bezeichnungen und werden nicht automatisch ersetzt. Übersetzungen folgen dem [offiziellen HA-Mechanismus](https://developers.home-assistant.io/docs/internationalization/custom_integration/).
 
 ## Installation
 
@@ -29,7 +33,7 @@ Kein Supervisor-Add-on-Repository hinzufügen. Für den benutzerdefinierten Weg 
 
 Vorher Home Assistant sichern. Bei einem Update zusätzlich den bisherigen Integrationsordner aufbewahren.
 
-1. [Installations-ZIP herunterladen](https://github.com/Zorax24/home-assistant-heiko/releases/download/v0.5.2/heiko_w600-ha-0.5.2.zip) und entpacken.
+1. [Installations-ZIP herunterladen](https://github.com/Zorax24/home-assistant-heiko/releases/download/v0.6.0/heiko_w600-ha-0.6.0.zip) und entpacken.
 2. Den enthaltenen Ordner `custom_components/heiko_w600` nach `/config/custom_components/` auf deinem Home-Assistant-Rechner kopieren.
 3. Home Assistant neu starten. Dann [HEIKO W600 hinzufügen](https://my.home-assistant.io/redirect/config_flow_start/?domain=heiko_w600) anklicken oder **Einstellungen → Geräte & Dienste → Integration hinzufügen** verwenden.
 

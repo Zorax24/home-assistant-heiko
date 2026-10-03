@@ -6,7 +6,11 @@
 
 A **custom integration**, not a Supervisor app/add-on. It receives W600 TCP data in Home Assistant, exposes measurements and the complete reference settings catalog, and can optionally relay the connection to MyHeatPump. No separate server process or cloud account login is required.
 
-**Status: 0.5.2, experimental.** **Physical communication and selected writes have been confirmed on a HEIKO Thermal 9 with W600:** live measurements, a mode change with fresh settings readback, and a subsequent heat-pump response were observed. This confirms the tested functions on one installation; it is not acceptance of every parameter or a separate hardware test of the 0.5.2 package. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
+**Status: 0.6.0, experimental.** **Physical communication and selected writes have been confirmed on a HEIKO Thermal 9 with W600:** live measurements, a mode change with fresh settings readback, and a subsequent heat-pump response were observed. This confirms the tested functions on one installation; it is not acceptance of every parameter or a separate hardware test of the 0.6.0 package. The catalog originates from a HEIKO ioBroker adapter; this is not a manufacturer-certified compatibility list. Do not assume another controller or firmware supports every parameter. See [verification and limitations](docs/verification.md).
+
+## Languages
+
+English, German and Polish are included for setup, options, entity labels/choices, messages and dashboard exports. Home Assistant uses its system language for default entity names; explicit custom names are preserved. Choose `pl` in the `heiko_w600.export_dashboard` action for a Polish dashboard. Existing dashboards have static labels and are not replaced automatically. Translation files follow the [official HA mechanism](https://developers.home-assistant.io/docs/internationalization/custom_integration/).
 
 ## Installation
 
@@ -29,7 +33,7 @@ No Supervisor add-on repository is needed. A HACS listing is not required for th
 
 Make a Home Assistant backup first. If updating, keep the previous component folder.
 
-1. [Download the installation ZIP](https://github.com/Zorax24/home-assistant-heiko/releases/download/v0.5.2/heiko_w600-ha-0.5.2.zip) and extract it.
+1. [Download the installation ZIP](https://github.com/Zorax24/home-assistant-heiko/releases/download/v0.6.0/heiko_w600-ha-0.6.0.zip) and extract it.
 2. Copy its `custom_components/heiko_w600` folder into `/config/custom_components/` on your Home Assistant host.
 3. Restart Home Assistant, then click [Add HEIKO W600](https://my.home-assistant.io/redirect/config_flow_start/?domain=heiko_w600) or use **Settings → Devices & services → Add integration**.
 

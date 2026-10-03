@@ -7,3 +7,4 @@ export_dashboard:
           options:
             - en
             - de
+            - pl

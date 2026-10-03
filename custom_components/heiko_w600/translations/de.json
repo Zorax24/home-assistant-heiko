@@ -2528,7 +2528,7 @@
       "fields": {
         "language": {
           "name": "Sprache",
-          "description": "en oder de; standardmäßig die Home-Assistant-Systemsprache."
+          "description": "en, de oder pl; standardmäßig die Home-Assistant-Systemsprache."
         }
       }
     }
@@ -2538,7 +2538,7 @@
       "message": "W600-Listener kann nicht gestartet werden. Lokale Adresse, belegten Port und Berechtigungen prüfen. Diese Meldung enthält keine private Adresse."
     },
     "invalid_language": {
-      "message": "Bitte en oder de wählen."
+      "message": "Bitte en, de oder pl wählen."
     },
     "not_configured": {
       "message": "Zuerst die HEIKO-Integration einrichten."

@@ -3,16 +3,27 @@ import json
 from pathlib import Path
 from .parameters import CATALOG
 
-_TEXT = json.loads(Path(__file__).with_name("dashboard_strings.json").read_text(encoding="utf-8"))
-_ENTITIES = {language: json.loads(Path(__file__).with_name("translations").joinpath(f"{language}.json").read_text(encoding="utf-8"))["entity"] for language in ("en", "de")}
+SUPPORTED_LANGUAGES = ("en", "de", "pl")
+
+
+from functools import cache
+
+
+@cache
+def load_dashboard_resources():
+    """Load localized resources in an executor before registering the export action."""
+    text = json.loads(Path(__file__).with_name("dashboard_strings.json").read_text(encoding="utf-8"))
+    entities = {language: json.loads(Path(__file__).with_name("translations").joinpath(f"{language}.json").read_text(encoding="utf-8"))["entity"] for language in SUPPORTED_LANGUAGES}
+    return text, entities
 
 
 def build_dashboard(entry_id, entities, language="de"):
     """Resolve stable unique IDs, preserving renamed IDs and explicit custom names."""
-    language = "de" if language == "de" else "en"
-    text = _TEXT[language]
+    language = language if language in SUPPORTED_LANGUAGES else "en"
+    localized_text, localized_entities = load_dashboard_resources()
+    text = localized_text[language]
     ui = text["ui"]
-    names = {key: value["name"] for platform in _ENTITIES[language].values() for key, value in platform.items()}
+    names = {key: value["name"] for platform in localized_entities[language].values() for key, value in platform.items()}
     registry = {item.unique_id: item for item in entities
                 if item.config_entry_id == entry_id and not item.disabled_by}
 
@@ -41,7 +52,7 @@ def build_dashboard(entry_id, entities, language="de"):
         if entries:
             title = text["sections"][section]
             if section not in ("Schnelleinstellungen", "Benutzereinstellungen", "Systeminformationen", "Ferienmodus", "Reduzierter Heizbetrieb"):
-                title = "Service · " + title
+                title = ui["service_prefix"] + " · " + title
             parameter_cards.append(card(title, entries))
     measurements = rows([f"par{i:02d}" for i in range(1, 44)] + ["compressor_running"])
     measurements = list({row["entity"]: row for row in measurements}.values())

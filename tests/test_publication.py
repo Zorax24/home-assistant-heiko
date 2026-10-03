@@ -20,14 +20,14 @@ COMPONENT=ROOT/'custom_components/heiko_w600'
 class PublicationTests(unittest.TestCase):
     def test_binary_status_labels_are_plain_on_off_in_both_languages(self):
         from heiko_w600.binary_sensor import BINARY_SENSORS
-        for language, on, off in (("de", "Ein", "Aus"), ("en", "On", "Off")):
+        for language, on, off in (("de", "Ein", "Aus"), ("en", "On", "Off"), ("pl", "Włączone", "Wyłączone")):
             translated=json.loads((COMPONENT/f"translations/{language}.json").read_text(encoding="utf-8"))
             for description in BINARY_SENSORS:
                 self.assertEqual(translated['entity']['binary_sensor'][description.translation_key]['state'], {'on':on,'off':off})
 
     def test_dashboard_catalog_names_match_entity_translations(self):
         dashboard=json.loads((COMPONENT/'dashboard_strings.json').read_text(encoding="utf-8"))
-        for language in ('en','de'):
+        for language in ('en','de','pl'):
             translated=json.loads((COMPONENT/f"translations/{language}.json").read_text(encoding="utf-8"))
             names={key:value['name'] for entries in translated['entity'].values() for key,value in entries.items()}
             self.assertTrue(all(names[key]==value for key,value in dashboard[language]['names'].items()))
@@ -36,13 +36,30 @@ class PublicationTests(unittest.TestCase):
         from tools.check_project import translation_keys
         en=json.loads((COMPONENT/'translations/en.json').read_text(encoding="utf-8"))
         de=json.loads((COMPONENT/'translations/de.json').read_text(encoding="utf-8"))
+        pl=json.loads((COMPONENT/"translations/pl.json").read_text(encoding="utf-8"))
         self.assertEqual(translation_keys(en),translation_keys(de))
+        self.assertEqual(translation_keys(en),translation_keys(pl))
         for p in CATALOG:
             platform='sensor' if not p['writable'] else 'switch' if p['type']=='boolean' else 'select' if p['pageControl']=='select' else 'number'
-            for lang in (en,de):
+            for lang in (en,de,pl):
                 item=lang['entity'][platform][f"setting_{p['settingIndex']:03d}"]
                 self.assertTrue(item['name'])
                 if platform=='select':self.assertEqual(set(item['state']),{f'option_{k}' for k in p['states']})
+
+    def test_polish_export_and_translation_placeholders(self):
+        import re
+        en=json.loads((COMPONENT/"translations/en.json").read_text(encoding="utf-8"))
+        pl=json.loads((COMPONENT/"translations/pl.json").read_text(encoding="utf-8"))
+        def leaves(value, path=()):
+            return {key:leaf for name,child in value.items() for key,leaf in leaves(child,(*path,name)).items()} if isinstance(value,dict) else {path:value}
+        english,polish=leaves(en),leaves(pl)
+        for key,value in english.items():
+            self.assertTrue(polish[key].strip())
+            self.assertEqual(set(re.findall(r"\{[^{}]+\}",value)),set(re.findall(r"\{[^{}]+\}",polish[key])))
+        dashboard=build_dashboard("test",[],"pl")
+        self.assertEqual(dashboard["title"],"Pompa ciepła")
+        self.assertEqual(dashboard["views"][0]["title"],"Przegląd")
+        self.assertEqual(build_dashboard("test",[],"unsupported")["title"],"Heat pump")
 
     def test_catalog_and_protocol_retained_after_line_ending_normalization(self):
         baseline=json.loads((ROOT/'tests/baseline.json').read_text(encoding="utf-8"))
@@ -53,7 +70,7 @@ class PublicationTests(unittest.TestCase):
         entities=[SimpleNamespace(unique_id='test_par04',entity_id='sensor.user_flow',name=None,original_name='Old name',config_entry_id='test',disabled_by=None),
                   SimpleNamespace(unique_id='test_setting_003',entity_id='select.disabled',config_entry_id='test',disabled_by='user'),
                   SimpleNamespace(unique_id='test_setting_000',entity_id='switch.foreign',config_entry_id='foreign',disabled_by=None)]
-        for lang,label in [('en','Flow temperature'),('de','Vorlauftemperatur')]:
+        for lang,label in [('en','Flow temperature'),('de','Vorlauftemperatur'),('pl','Temperatura zasilania')]:
             dashboard=build_dashboard('test',entities,lang)
             rows=[row for view in dashboard['views'] for card in view['cards'] for row in card.get('entities',[])]
             self.assertTrue(rows)
@@ -62,7 +79,7 @@ class PublicationTests(unittest.TestCase):
 
     def test_custom_dashboard_name_is_preserved_in_both_languages(self):
         entry=SimpleNamespace(unique_id='test_par04',entity_id='sensor.user_flow',name='Custom flow',config_entry_id='test',disabled_by=None)
-        for language in ('en','de'):
+        for language in ('en','de','pl'):
             dashboard=build_dashboard('test',[entry],language)
             rows=[row for view in dashboard['views'] for card in view['cards'] for row in card.get('entities',[])]
             self.assertTrue(all(row['name']=='Custom flow' for row in rows))
@@ -74,7 +91,7 @@ class PublicationTests(unittest.TestCase):
             with self.assertRaises(FLOW.ConfigFlowValidationError): FLOW.validate_config(_input(upstream_enabled=value))
 
     def test_service_groups_have_bilingual_risk_warning(self):
-        for language in ('en','de'):
+        for language in ('en','de','pl'):
             dashboard=build_dashboard('test',[],language)
             warning=next(card for card in dashboard['views'][1]['cards'] if card['type']=='markdown')
             self.assertTrue(warning['content'])

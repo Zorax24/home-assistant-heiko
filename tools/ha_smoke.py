@@ -2,6 +2,7 @@
 from __future__ import annotations
 import asyncio
 import json
+import logging
 from pathlib import Path
 import shutil
 import tempfile
@@ -20,6 +21,14 @@ DOMAIN = "heiko_w600"
 
 
 async def main():
+    blocking_warnings = []
+    class BlockingWarningRecorder(logging.Handler):
+        def emit(self, record):
+            message = record.getMessage()
+            if "heiko_w600" in message and "blocking call" in message.lower():
+                blocking_warnings.append(message)
+    recorder = BlockingWarningRecorder()
+    logging.getLogger("homeassistant.util.loop").addHandler(recorder)
     with tempfile.TemporaryDirectory(prefix="heiko-isolated-") as folder:
         shutil.copytree(ROOT / "custom_components", Path(folder) / "custom_components", ignore=shutil.ignore_patterns("__pycache__"))
         hass = HomeAssistant(folder)
@@ -92,22 +101,26 @@ async def main():
                 coordinator._last_settings = None
                 coordinator._publish()
             from custom_components.heiko_w600.dashboard import build_dashboard
-            for language in ("en", "de"):
+            for language in ("en", "de", "pl"):
                 for category in ("entity", "config", "options", "services", "exceptions"):
                     translated = await async_get_translations(hass, language, category, {DOMAIN})
                     assert translated, (language, category)
                     if category == "entity":
                         for item in binary:
                             key = f"component.{DOMAIN}.entity.binary_sensor.{item.translation_key}.state."
-                            assert translated[key+"on"] == ("Ein" if language == "de" else "On")
-                            assert translated[key+"off"] == ("Aus" if language == "de" else "Off")
+                            assert translated[key+"on"] == {"de":"Ein", "en":"On", "pl":"Włączone"}[language]
+                            assert translated[key+"off"] == {"de":"Aus", "en":"Off", "pl":"Wyłączone"}[language]
                 dashboard = build_dashboard(entry.entry_id, entities, language)
                 assert len(dashboard["views"]) == 3
                 rows=[row for card in dashboard["views"][1]["cards"] for row in card.get("entities", [])]
                 assert len(rows) == 129, len(rows)
                 response = await hass.services.async_call(DOMAIN, "export_dashboard", {"language":language}, blocking=True, return_response=True)
                 assert "yaml" in response
-                assert ("Heat pump" if language == "en" else "Wärmepumpe") in response["yaml"]
+                assert {"en":"Heat pump", "de":"Wärmepumpe", "pl":"Pompa ciepła"}[language] in response["yaml"]
+            hass.config.language = "pl"
+            response = await hass.services.async_call(DOMAIN, "export_dashboard", {}, blocking=True, return_response=True)
+            assert "Pompa ciepła" in response["yaml"] and "Przegląd" in response["yaml"]
+            hass.config.language = "en"
             from homeassistant.exceptions import HomeAssistantError
             try:
                 await hass.services.async_call(DOMAIN, "export_dashboard", {"language":"unsupported"}, blocking=True, return_response=True)
@@ -142,7 +155,8 @@ async def main():
                 await conflicting.async_stop()
             assert await hass.config_entries.async_unload(entry.entry_id)
             assert DOMAIN not in hass.data
-            print(json.dumps({"ha_core":"2026.9.4","entities":len(entities),"languages":["en","de"],"port_conflict":"passed","hardware_contact":False}))
+            assert not blocking_warnings, "HEIKO caused blocking I/O during setup or export"
+            print(json.dumps({"ha_core":"2026.9.4","entities":len(entities),"languages":["en","de","pl"],"port_conflict":"passed","hardware_contact":False}))
         finally:
             await hass.async_stop(force=True)
 

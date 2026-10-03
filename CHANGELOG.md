@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0
+
+- Add Polish (`pl`) translations for setup/options, all entities and catalog choices, status/error messages, actions and complete dashboard export including service/protection warnings.
+- Support `pl` in the export action and Home Assistant system-language selection; preserve custom names, entity IDs, raw states, catalog and cloud choice.
+- Load dashboard translation files in the executor during setup, fixing the blocking disk-read startup warning.
+- Extend catalog/translation parity and real Home Assistant smoke checks to all three languages. No production or device writes are part of these automated tests.
+
+Deutsch: Vollständige polnische Bedienoberfläche und Dashboard-Export ergänzt; Startwarnung beim Laden der Dashboard-Texte behoben.
+Polski: Dodano polskie tłumaczenia interfejsu i eksportu panelu; usunięto blokujący odczyt plików tłumaczeń podczas uruchamiania.
+
 ## 0.5.2
 
 - Review all English/German entity names, options, connection/write-result states, setup fields and dashboard labels. Pump/compressor binary status displays On/Off (Ein/Aus) through integration-specific state translations instead of the RUNNING device-class wording.

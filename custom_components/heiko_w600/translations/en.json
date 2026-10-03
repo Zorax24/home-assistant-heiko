@@ -2528,7 +2528,7 @@
       "fields": {
         "language": {
           "name": "Language",
-          "description": "en or de; defaults to the Home Assistant system language."
+          "description": "en, de or pl; defaults to the Home Assistant system language."
         }
       }
     }
@@ -2538,7 +2538,7 @@
       "message": "Cannot bind the W600 listener. Check the local address, port conflicts and permissions. No private address is included in this error."
     },
     "invalid_language": {
-      "message": "Choose en or de."
+      "message": "Choose en, de or pl."
     },
     "not_configured": {
       "message": "Configure the HEIKO integration first."

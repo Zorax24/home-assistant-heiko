@@ -1,0 +1,2598 @@
+{
+  "title": "HEIKO W600",
+  "config": {
+    "step": {
+      "user": {
+        "title": "HEIKO W600",
+        "description": "Skonfiguruj odbiornik W600, przekazywanie do serwera producenta i sterowanie parametrami z katalogu, w tym ustawieniami serwisowymi. Zapis wymaga aktywnego połączenia z W600 i potwierdzenia przez świeży odczyt CMD02. Domyślny adres i porty są wartościami referencyjnymi; konfiguracja nie sprawdza żadnego z połączeń. Dla zachowania zgodności przekazywanie do producenta jest domyślnie włączone; wybierz tę opcję świadomie. Parametry serwisowe i zabezpieczeń wymagają fachowej wiedzy.",
+        "data": {
+          "listen_host": "Lokalny adres odbiornika",
+          "listen_port": "Lokalny port TCP",
+          "upstream_host": "Serwer MyHeatPump",
+          "upstream_port": "Port TCP MyHeatPump",
+          "stale_seconds": "Maksymalny wiek danych (sekundy)",
+          "upstream_enabled": "Przekazywanie do MyHeatPump"
+        }
+      }
+    },
+    "error": {
+      "invalid_input": "Wprowadź wszystkie wymagane ustawienia połączenia.",
+      "invalid_listen_host": "Wprowadź adres IP lub prawidłową nazwę hosta odbiornika.",
+      "invalid_listen_port": "Wprowadź port TCP odbiornika od 1 do 65535.",
+      "invalid_upstream_host": "Wprowadź adres IP lub prawidłową nazwę hosta serwera producenta.",
+      "invalid_upstream_port": "Wprowadź port TCP serwera producenta od 1 do 65535.",
+      "invalid_stale_seconds": "Wprowadź całkowitą liczbę sekund od 30 do 3600.",
+      "invalid_upstream_enabled": "Wybierz Włączone lub Wyłączone."
+    },
+    "abort": {
+      "already_configured": "Obsługiwany jest tylko jeden wpis konfiguracji HEIKO W600 w danej instancji Home Assistant."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "par04": {
+        "name": "Temperatura zasilania"
+      },
+      "par05": {
+        "name": "Temperatura powrotu"
+      },
+      "par06": {
+        "name": "Temperatura płytowego wymiennika ciepła"
+      },
+      "par07": {
+        "name": "Temperatura ciepłej wody użytkowej"
+      },
+      "par08": {
+        "name": "Temperatura wody grzewczej/chłodzącej"
+      },
+      "par09": {
+        "name": "Temperatura obiegu mieszacza 1"
+      },
+      "par10": {
+        "name": "Temperatura obiegu mieszacza 2"
+      },
+      "par11": {
+        "name": "Temperatura pomieszczenia"
+      },
+      "par20": {
+        "name": "Częstotliwość sprężarki"
+      },
+      "par21": {
+        "name": "Otwarcie elektronicznego zaworu rozprężnego"
+      },
+      "par22": {
+        "name": "Ciśnienie po stronie wysokiej"
+      },
+      "par23": {
+        "name": "Ciśnienie po stronie niskiej"
+      },
+      "par24": {
+        "name": "Temperatura zewnętrzna"
+      },
+      "par25": {
+        "name": "Temperatura tłoczenia sprężarki"
+      },
+      "par26": {
+        "name": "Temperatura ssania sprężarki"
+      },
+      "par27": {
+        "name": "Temperatura wymiennika jednostki zewnętrznej"
+      },
+      "par28": {
+        "name": "Prędkość wentylatora zewnętrznego 1"
+      },
+      "par29": {
+        "name": "Prędkość wentylatora zewnętrznego 2"
+      },
+      "par30": {
+        "name": "Pobór prądu"
+      },
+      "par31": {
+        "name": "Napięcie zasilania"
+      },
+      "par36": {
+        "name": "Efektywna temperatura zadana zasilania"
+      },
+      "par01": {
+        "name": "Kod aktywnej funkcji"
+      },
+      "par12": {
+        "name": "Sygnał PWM pompy P0"
+      },
+      "par13": {
+        "name": "Sygnał zaworu mieszającego 1"
+      },
+      "par14": {
+        "name": "Sygnał zaworu mieszającego 2"
+      },
+      "par37": {
+        "name": "Wersja oprogramowania sterownika"
+      },
+      "par38": {
+        "name": "Obliczony stopień pracy sprężarki"
+      },
+      "par39": {
+        "name": "Przegrzanie na ssaniu"
+      },
+      "par40": {
+        "name": "Przegrzanie na tłoczeniu"
+      },
+      "par41": {
+        "name": "Czas pracy grzałki pomocniczej AH"
+      },
+      "par42": {
+        "name": "Czas pracy dodatkowego źródła ciepła HBH"
+      },
+      "par43": {
+        "name": "Czas pracy grzałki pomocniczej CWU HWTBH"
+      },
+      "setting_001": {
+        "name": "Wersja oprogramowania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_002": {
+        "name": "Wersja bazy danych",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_137": {
+        "name": "Wersja EEPROM płyty jednostki zewnętrznej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "connection_state": {
+        "name": "Stan połączenia",
+        "state": {
+          "stopped": "Odbiór danych wyłączony",
+          "waiting": "Oczekiwanie na połączenie W600",
+          "measurements_stale": "Połączono; pomiary brakujące lub nieaktualne",
+          "settings_stale": "Pomiary aktualne; ustawienia brakujące lub nieaktualne",
+          "fresh": "Pomiary i ustawienia aktualne"
+        },
+        "state_attributes": {
+          "tcp_port": {
+            "name": "Port TCP odbiornika"
+          },
+          "weiterleitung_aktiv": {
+            "name": "Przekazywanie do producenta włączone"
+          },
+          "w600_verbunden": {
+            "name": "W600 połączony"
+          },
+          "hersteller_verbunden": {
+            "name": "Połączono z producentem"
+          },
+          "messwerte_aktuell": {
+            "name": "Pomiary aktualne"
+          },
+          "einstellungen_aktuell": {
+            "name": "Ustawienia aktualne"
+          }
+        }
+      },
+      "bytes_to_cloud": {
+        "name": "Dane do chmury producenta"
+      },
+      "bytes_to_unit": {
+        "name": "Dane do pompy ciepła"
+      },
+      "frames_received": {
+        "name": "Prawidłowe ramki protokołu"
+      },
+      "last_write_result": {
+        "name": "Ostatnia zmiana ustawienia",
+        "state": {
+          "none": "Nie zlecono zmiany",
+          "confirmed": "Potwierdzono",
+          "unconfirmed": "Nie potwierdzono; wynik nieznany",
+          "aborted": "Przerwano; sprawdź aktualną wartość"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "requested_value": {
+            "name": "Żądana wartość"
+          }
+        }
+      },
+      "realtime_age": {
+        "name": "Wiek pomiarów"
+      },
+      "settings_age": {
+        "name": "Wiek ustawień"
+      }
+    },
+    "binary_sensor": {
+      "par15": {
+        "name": "Czujnik przepływu",
+        "state": {
+          "on": "Włączone",
+          "off": "Wyłączone"
+        }
+      },
+      "par32": {
+        "name": "Odszranianie",
+        "state": {
+          "on": "Włączone",
+          "off": "Wyłączone"
+        }
+      },
+      "par33": {
+        "name": "Pompa P0",
+        "state": {
+          "on": "Włączone",
+          "off": "Wyłączone"
+        }
+      },
+      "par34": {
+        "name": "Pompa P1",
+        "state": {
+          "on": "Włączone",
+          "off": "Wyłączone"
+        }
+      },
+      "par35": {
+        "name": "Pompa P2",
+        "state": {
+          "on": "Włączone",
+          "off": "Wyłączone"
+        }
+      },
+      "compressor_running": {
+        "name": "Sprężarka",
+        "state": {
+          "on": "Włączone",
+          "off": "Wyłączone"
+        }
+      }
+    },
+    "switch": {
+      "setting_000": {
+        "name": "Pompa ciepła",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_005": {
+        "name": "Zezwolenie na CWU",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_006": {
+        "name": "Zezwolenie na ogrzewanie",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_007": {
+        "name": "Zezwolenie na chłodzenie",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_009": {
+        "name": "Podstawowe tryby pracy",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_018": {
+        "name": "Harmonogram ogrzewania i chłodzenia",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_023": {
+        "name": "Krzywa grzewcza",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_034": {
+        "name": "Wpływ temperatury pomieszczenia na krzywą grzewczą",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_040": {
+        "name": "Funkcja antylegionella",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_044": {
+        "name": "Tryb urlopowy",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_047": {
+        "name": "Dodatkowe źródło ciepła do ogrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_049": {
+        "name": "Dodatkowe źródło ciepła do CWU",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_053": {
+        "name": "Tryb awaryjny",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_056": {
+        "name": "Naprzemienny priorytet",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_061": {
+        "name": "Naprzemienny priorytet z HWTBH",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_062": {
+        "name": "Funkcja zasobnika CWU",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_063": {
+        "name": "Ponowne podgrzewanie",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_066": {
+        "name": "Obieg ogrzewania/chłodzenia 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_068": {
+        "name": "Krzywa grzewcza obiegu 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_077": {
+        "name": "Obniżona temperatura zadana ogrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_079": {
+        "name": "Funkcja nocna",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_082": {
+        "name": "Blokada przez dostawcę energii",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_083": {
+        "name": "Dodatkowe źródło ciepła HBH podczas blokady dostawcy energii",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_084": {
+        "name": "Pompa obiegowa P0 podczas blokady dostawcy energii",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_091": {
+        "name": "Zasobnik buforowy obecny",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_092": {
+        "name": "Zawór mieszający 1",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_093": {
+        "name": "Zawór mieszający 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_094": {
+        "name": "Pompa P1 podczas ogrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_095": {
+        "name": "Pompa P1 podczas chłodzenia",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_096": {
+        "name": "Pompa P1 przy sygnale zewnętrznym",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_097": {
+        "name": "Pompa P2 podczas ogrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_098": {
+        "name": "Pompa P2 podczas chłodzenia",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_099": {
+        "name": "Pompa P2 przy sygnale zewnętrznym",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_100": {
+        "name": "Suszenie jastrychu",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_113": {
+        "name": "Zmiana trybu pracy przy odszranianiu",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_123": {
+        "name": "Tryb ECO CWU",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_125": {
+        "name": "Tryb ECO ogrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_127": {
+        "name": "Wykrywanie przemieszczenia czujnika CWU",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_128": {
+        "name": "Sygnał wyłączenia jednostki zewnętrznej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_133": {
+        "name": "Blokada grzałki pomocniczej AH",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_134": {
+        "name": "Blokada grzałki AH zależna od temperatury zewnętrznej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "upstream_enabled": {
+        "name": "Przekazywanie do MyHeatPump"
+      }
+    },
+    "select": {
+      "setting_003": {
+        "name": "Tryb pracy",
+        "state": {
+          "option_0": "Czuwanie",
+          "option_1": "Ogrzewanie",
+          "option_2": "Chłodzenie",
+          "option_3": "Ciepła woda użytkowa",
+          "option_4": "Automatyczny"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_008": {
+        "name": "Warunek zezwolenia na ogrzewanie i chłodzenie",
+        "state": {
+          "option_0": "Wyłączone",
+          "option_1": "Temperatura zewnętrzna",
+          "option_2": "Sygnał zewnętrzny",
+          "option_3": "Sygnał zewnętrzny i temperatura zewnętrzna"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_048": {
+        "name": "Priorytet dodatkowego źródła ogrzewania (HBH)",
+        "state": {
+          "option_0": "Niższy niż AH",
+          "option_1": "Wyższy niż AH"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_050": {
+        "name": "Priorytet dodatkowego źródła CWU (HWTBH)",
+        "state": {
+          "option_0": "Niższy niż AH",
+          "option_1": "Wyższy niż AH"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_081": {
+        "name": "Logika styku blokady dostawcy energii",
+        "state": {
+          "option_0": "Normalnie zamknięty (NC)",
+          "option_1": "Normalnie otwarty (NO)"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_085": {
+        "name": "Podświetlenie wyświetlacza",
+        "state": {
+          "option_0": "Zawsze włączone",
+          "option_1": "3 min",
+          "option_2": "5 min",
+          "option_3": "10 min"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_086": {
+        "name": "Typ pompy P0",
+        "state": {
+          "option_0": "Pompa DC o zmiennej prędkości (PWM)",
+          "option_1": "Pompa AC"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_087": {
+        "name": "Poziom prędkości pompy P0",
+        "state": {
+          "option_0": "Wysoka prędkość",
+          "option_1": "Średnia prędkość",
+          "option_2": "Niska prędkość"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_088": {
+        "name": "Tryb pracy pompy P0",
+        "state": {
+          "option_0": "Praca przerywana",
+          "option_1": "Praca ciągła",
+          "option_2": "Wyłączenie razem ze sprężarką"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_118": {
+        "name": "Wyjście sygnału trybu pracy",
+        "state": {
+          "option_0": "Wyłączone",
+          "option_1": "Ogrzewanie",
+          "option_2": "Chłodzenie"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_119": {
+        "name": "Logika styku wyjścia trybu pracy",
+        "state": {
+          "option_0": "Normalnie zamknięty (NC)",
+          "option_1": "Normalnie otwarty (NO)"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_130": {
+        "name": "Prędkość pompy podczas ogrzewania",
+        "state": {
+          "option_0": "Wysoka prędkość",
+          "option_1": "Średnia prędkość",
+          "option_2": "Niska prędkość"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_131": {
+        "name": "Prędkość pompy podczas chłodzenia",
+        "state": {
+          "option_0": "Wysoka prędkość",
+          "option_1": "Średnia prędkość",
+          "option_2": "Niska prędkość"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_132": {
+        "name": "Prędkość pompy podczas podgrzewania CWU",
+        "state": {
+          "option_0": "Wysoka prędkość",
+          "option_1": "Średnia prędkość",
+          "option_2": "Niska prędkość"
+        },
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      }
+    },
+    "number": {
+      "setting_010": {
+        "name": "Granica temperatury zewnętrznej dla ogrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_011": {
+        "name": "Granica temperatury zewnętrznej dla chłodzenia",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_012": {
+        "name": "Maksymalny czas przy minimalnej prędkości sprężarki",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_019": {
+        "name": "Różnica temperatury wody do zatrzymania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_020": {
+        "name": "Różnica temperatury wody do uruchomienia",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_021": {
+        "name": "Różnica temperatury do zmniejszenia prędkości sprężarki",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_022": {
+        "name": "Temperatura zadana chłodzenia",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_024": {
+        "name": "Punkt 1 temperatury zewnętrznej krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_025": {
+        "name": "Punkt 2 temperatury zewnętrznej krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_026": {
+        "name": "Punkt 3 temperatury zewnętrznej krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_027": {
+        "name": "Punkt 4 temperatury zewnętrznej krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_028": {
+        "name": "Punkt 5 temperatury zewnętrznej krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_029": {
+        "name": "Punkt 1 temperatury zasilania krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_030": {
+        "name": "Punkt 2 temperatury zasilania krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_031": {
+        "name": "Punkt 3 temperatury zasilania krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_032": {
+        "name": "Punkt 4 temperatury zasilania krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_033": {
+        "name": "Punkt 5 temperatury zasilania krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_035": {
+        "name": "Temperatura zadana pomieszczenia dla ogrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_036": {
+        "name": "Temperatura zadana pomieszczenia dla chłodzenia",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_037": {
+        "name": "Temperatura zadana zasilania bez krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_038": {
+        "name": "Minimalna temperatura zasilania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_039": {
+        "name": "Maksymalna temperatura zasilania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_041": {
+        "name": "Temperatura zadana funkcji antylegionella",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_042": {
+        "name": "Czas utrzymania temperatury antylegionella",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_043": {
+        "name": "Maksymalny czas pracy funkcji antylegionella",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_045": {
+        "name": "Obniżenie temperatury CWU w trybie urlopowym",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_046": {
+        "name": "Obniżenie temperatury wody grzewczej w trybie urlopowym",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_051": {
+        "name": "Współczynnik startu zewnętrznego źródła ciepła (delta T/czas)",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_052": {
+        "name": "Interwał pomiarowy startu HWTBH",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_054": {
+        "name": "Temperatura zadana CWU",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_055": {
+        "name": "Różnica temperatury uruchomienia CWU",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_057": {
+        "name": "Granica temperatury zewnętrznej dla naprzemiennego priorytetu",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_058": {
+        "name": "Minimalny czas podgrzewania CWU",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_059": {
+        "name": "Maksymalny czas pracy ogrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_060": {
+        "name": "Dopuszczalne odchylenie temperatury ogrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_064": {
+        "name": "Temperatura zadana ponownego podgrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_065": {
+        "name": "Różnica temperatury uruchomienia ponownego podgrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_067": {
+        "name": "Temperatura zadana chłodzenia obiegu 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_069": {
+        "name": "Charakterystyka temperatury zewnętrznej/wody A",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_070": {
+        "name": "Charakterystyka temperatury zewnętrznej/wody B",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_071": {
+        "name": "Charakterystyka temperatury zewnętrznej/wody C",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_072": {
+        "name": "Charakterystyka temperatury zewnętrznej/wody D",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_073": {
+        "name": "Charakterystyka temperatury zewnętrznej/wody E",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_074": {
+        "name": "Temperatura zadana zasilania obiegu 2 bez krzywej grzewczej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_075": {
+        "name": "Maksymalna temperatura zasilania obiegu 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_076": {
+        "name": "Minimalna temperatura zasilania obiegu 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_078": {
+        "name": "Obniżenie/podwyższenie temperatury",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_080": {
+        "name": "Odchylenie temperatury funkcji nocnej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_089": {
+        "name": "Czas przerwy pompy P0 w pracy przerywanej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_090": {
+        "name": "Czas pracy pompy P0 w pracy przerywanej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_101": {
+        "name": "Aktualny etap suszenia jastrychu",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_102": {
+        "name": "Czas trwania aktualnego etapu",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_103": {
+        "name": "Aktualna temperatura zadana suszenia jastrychu",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_104": {
+        "name": "Czas w zakresie temperatury zadanej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_105": {
+        "name": "Całkowity czas suszenia jastrychu",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_106": {
+        "name": "Najwyższa osiągnięta temperatura zasilania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_107": {
+        "name": "Temperatura zewnętrzna uruchomienia 1. stopnia ochrony przed mrozem",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_108": {
+        "name": "Temperatura zewnętrzna uruchomienia 2. stopnia ochrony przed mrozem",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_109": {
+        "name": "Temperatura zewnętrzna zatrzymania 2. stopnia ochrony przed mrozem",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_110": {
+        "name": "Temperatura wody uruchomienia 2. stopnia ochrony przed mrozem",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_111": {
+        "name": "Temperatura wody zatrzymania 2. stopnia ochrony przed mrozem",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_115": {
+        "name": "Czas przełączania zaworu trójdrogowego",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_116": {
+        "name": "Czas zasilania zaworu trójdrogowego",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_117": {
+        "name": "Maksymalna wydajność wentylatora",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_120": {
+        "name": "Przesunięcie równoległe krzywej grzewczej 1",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_121": {
+        "name": "Przesunięcie równoległe krzywej grzewczej 2",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_124": {
+        "name": "Granica temperatury zewnętrznej dla trybu ECO CWU",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_126": {
+        "name": "Granica temperatury zewnętrznej dla trybu ECO ogrzewania",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_129": {
+        "name": "Temperatura zewnętrzna zakończenia wyłączenia jednostki zewnętrznej",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      },
+      "setting_135": {
+        "name": "Granica temperatury zewnętrznej blokady grzałki AH",
+        "state_attributes": {
+          "parameter_index": {
+            "name": "Indeks parametru"
+          },
+          "section": {
+            "name": "Sekcja"
+          },
+          "confirmation": {
+            "name": "Ramka potwierdzająca"
+          },
+          "source": {
+            "name": "Źródło referencyjne"
+          }
+        }
+      }
+    },
+    "button": {
+      "request_06": {
+        "name": "Odczytaj pomiary"
+      },
+      "request_07": {
+        "name": "Odczytaj ustawienia"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "HEIKO W600",
+        "description": "Zmień ustawienia połączenia i aktualności danych. Zapisanie przeładowuje tę integrację. Identyfikatory encji, przypisania urządzeń i wybór przekazywania do chmury zostają zachowane.",
+        "data": {
+          "listen_host": "Lokalny adres odbiornika",
+          "listen_port": "Lokalny port TCP",
+          "upstream_host": "Serwer MyHeatPump",
+          "upstream_port": "Port TCP MyHeatPump",
+          "stale_seconds": "Maksymalny wiek danych (sekundy)",
+          "upstream_enabled": "Przekazywanie do MyHeatPump"
+        }
+      }
+    },
+    "error": {
+      "invalid_input": "Wprowadź wszystkie wymagane ustawienia połączenia.",
+      "invalid_listen_host": "Wprowadź adres IP lub prawidłową nazwę hosta odbiornika.",
+      "invalid_listen_port": "Wprowadź port TCP odbiornika od 1 do 65535.",
+      "invalid_upstream_host": "Wprowadź adres IP lub prawidłową nazwę hosta serwera producenta.",
+      "invalid_upstream_port": "Wprowadź port TCP serwera producenta od 1 do 65535.",
+      "invalid_stale_seconds": "Wprowadź całkowitą liczbę sekund od 30 do 3600.",
+      "invalid_upstream_enabled": "Wybierz Włączone lub Wyłączone."
+    }
+  },
+  "services": {
+    "export_dashboard": {
+      "name": "Wygeneruj panel pompy ciepła",
+      "description": "Zwraca YAML z encjami zarejestrowanymi w tej instalacji. Wklej go do nowego panelu; żaden panel nie zostanie nadpisany.",
+      "fields": {
+        "language": {
+          "name": "Język",
+          "description": "en, de lub pl; domyślnie język systemowy Home Assistant."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "listener_unavailable": {
+      "message": "Nie można uruchomić odbiornika W600. Sprawdź lokalny adres, konflikty portów i uprawnienia. Ten komunikat nie zawiera prywatnego adresu."
+    },
+    "invalid_language": {
+      "message": "Wybierz en, de lub pl."
+    },
+    "not_configured": {
+      "message": "Najpierw skonfiguruj integrację HEIKO."
+    },
+    "read_only": {
+      "message": "Ten parametr jest tylko do odczytu."
+    },
+    "boolean_required": {
+      "message": "Wybierz Włączone lub Wyłączone."
+    },
+    "numeric_required": {
+      "message": "Wymagana jest wartość liczbowa."
+    },
+    "finite_integer_required": {
+      "message": "Wymagana jest wartość skończona; ten parametr może wymagać liczby całkowitej."
+    },
+    "below_minimum": {
+      "message": "Wartość jest niższa od minimum z katalogu."
+    },
+    "above_maximum": {
+      "message": "Wartość jest wyższa od maksimum z katalogu."
+    },
+    "unsupported_selection": {
+      "message": "Nieobsługiwana opcja katalogu."
+    },
+    "not_writable": {
+      "message": "Parametru nie ma w katalogu parametrów zapisywalnych."
+    },
+    "settings_unavailable": {
+      "message": "Wymagane jest aktywne połączenie W600 i aktualne ustawienia."
+    },
+    "cloud_write_pending": {
+      "message": "Trwa zapis zlecony przez producenta. Poczekaj na aktualne ustawienia."
+    },
+    "connection_changed": {
+      "message": "Połączenie W600 zmieniło się podczas tego żądania."
+    },
+    "write_unconfirmed": {
+      "message": "Żaden świeży odczyt CMD02 nie potwierdził żądanej wartości. Wynik w urządzeniu jest nieznany; sprawdź aktualną wartość przed ponowną próbą."
+    },
+    "unsupported_request": {
+      "message": "Nieobsługiwane żądanie odczytu."
+    },
+    "not_connected": {
+      "message": "Brak aktywnego połączenia W600."
+    },
+    "request_failed": {
+      "message": "Żądanie odczytu W600 nie powiodło się."
+    },
+    "session_ended": {
+      "message": "Sesja W600 zakończyła się lub zmieniła."
+    },
+    "concurrent_cloud_write": {
+      "message": "Równoczesny zapis producenta przerwał żądanie."
+    }
+  }
+}

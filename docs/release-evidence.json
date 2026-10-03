@@ -1,24 +1,27 @@
 {
-  "version": "0.5.2",
+  "version": "0.6.0",
   "source_baseline": "complete 0.4.0; source files verified against its installation archive",
-  "unit_loopback_tests": 62,
+  "unit_loopback_tests": 63,
   "local_real_ha_core": "2026.9.4",
   "real_ha_registered_entities": 176,
   "translations": [
     "en",
-    "de"
+    "de",
+    "pl"
   ],
   "local_ha_gates": [
     "setup",
     "entity translations",
     "options form",
-    "dashboard export in both languages",
+    "dashboard export in all three languages",
     "invalid language rejection",
     "persistent cloud option without device",
     "loopback port conflict",
     "unload",
     "legacy select alias via actual HA service with synthetic write recorder",
-    "all six binary sensors: on/off/unavailable and DE/EN state translations"
+    "all six binary sensors: on/off/unavailable and DE/EN/PL state translations",
+    "Polish default system-language dashboard export",
+    "no HEIKO blocking-I/O warnings during setup/export"
   ],
   "secret_scan": {
     "tool": "Gitleaks 8.30.1",
@@ -36,8 +39,8 @@
   "hacs_install": "not validated; default-list inclusion and Brands submission not completed",
   "brands_submission": false,
   "install_archive": {
-    "files": 25,
-    "sha256": "a5dcd0f6e05775f0a58698a93826c4d85ed86240205d44bd42141e36db977334",
+    "files": 26,
+    "sha256": "eb3d36989d6881c6f0ffcd01f5cffadc1c2cb2204dc6df2e09b2feda0b20575e",
     "reproducible_from_fresh_checkout": "Checked by release CI"
   },
   "hassfest": "Official Home Assistant hassfest action is required by release CI",
@@ -51,7 +54,6 @@
       "controller response during physical water draw observed in recorded telemetry"
     ],
     "installed_integration_version": "not recorded in test export",
-    "release_0_5_2_archive_hardware_acceptance": "not separately established",
     "unconfirmed": [
       "all catalog writes",
       "other controllers and firmware",
@@ -60,6 +62,7 @@
       "immediate auxiliary-heater operation",
       "cloud-disabled hardware operation"
     ],
-    "source": "Reviewed local live-test report, final parameter comparison and Home Assistant history; private exports excluded"
+    "source": "Reviewed local live-test report, final parameter comparison and Home Assistant history; private exports excluded",
+    "release_0_6_0_archive_hardware_acceptance": "not performed"
   }
 }

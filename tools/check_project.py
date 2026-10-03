@@ -48,11 +48,12 @@ def main():
     assert sum(p['writable'] for p in catalog)==125
     en=json.loads((COMPONENT/"translations/en.json").read_text(encoding="utf-8"))
     de=json.loads((COMPONENT/"translations/de.json").read_text(encoding="utf-8"))
-    assert translation_keys(en)==translation_keys(de)
+    pl=json.loads((COMPONENT/"translations/pl.json").read_text(encoding="utf-8"))
+    assert translation_keys(en)==translation_keys(de)==translation_keys(pl)
     for p in catalog:
         platform='sensor' if not p['writable'] else 'switch' if p['type']=='boolean' else 'select' if p['pageControl']=='select' else 'number'
         key=f"setting_{p['settingIndex']:03d}"
-        for language in (en,de):
+        for language in (en,de,pl):
             entity=language['entity'][platform][key]
             assert entity['name'].strip()
             if platform=='select': assert set(entity['state'])=={f'option_{k}' for k in p['states']}

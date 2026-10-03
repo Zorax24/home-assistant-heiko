@@ -25,14 +25,16 @@ async def async_setup(hass: HomeAssistant, config) -> bool:
     from homeassistant.exceptions import HomeAssistantError
     from homeassistant.helpers import entity_registry as er
     import yaml
-    from .dashboard import build_dashboard
+    from .dashboard import build_dashboard, load_dashboard_resources, SUPPORTED_LANGUAGES
+
+    await hass.async_add_executor_job(load_dashboard_resources)
 
     async def export_dashboard(call):
         entries = hass.config_entries.async_entries(DOMAIN)
         if not entries:
             raise HomeAssistantError(translation_domain=DOMAIN, translation_key="not_configured")
         language = call.data.get("language", getattr(hass.config, "language", "en"))
-        if "language" in call.data and language not in ("en", "de"):
+        if "language" in call.data and language not in SUPPORTED_LANGUAGES:
             raise HomeAssistantError(translation_domain=DOMAIN, translation_key="invalid_language")
         dashboard = build_dashboard(entries[0].entry_id,
                                     er.async_get(hass).entities.values(), language)

@@ -8,7 +8,7 @@ python -m venv .venv
 python -m unittest discover -s tests -v
 python tools/check_project.py
 python build_package.py
-python tools/check_project.py --archive dist/heiko_w600-ha-0.5.2.zip
+python tools/check_project.py --archive dist/heiko_w600-ha-0.6.0.zip
 ```
 
 For the isolated real-HA gate on Linux:
